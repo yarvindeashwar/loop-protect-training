@@ -1,0 +1,55 @@
+{
+  "model_id": "eleven_v3",
+  "host1_voice_id": "pNInz6obpgDQGcFmaJgB",
+  "host1_name": "Adam",
+  "host2_voice_id": "EXAVITQu4vr4xnSDxMaL",
+  "host2_name": "Bella",
+  "settings": {
+    "stability": 0.0
+  },
+  "slides": [
+    {
+      "id": "0-1",
+      "dialogue": [
+        { "speaker": 1, "text": "Alright, so today we're talking about something that I think a lot of restaurant operators don't fully understand. Delivery revenue." },
+        { "speaker": 2, "text": "Yeah, and specifically how to protect it. Because there's actually a lot of money that just... leaks out of the system." },
+        { "speaker": 1, "text": "Exactly. We're going to break down how delivery actually works, where those leaks happen, and most importantly, how to fix them." }
+      ]
+    },
+    {
+      "id": "1-1",
+      "dialogue": [
+        { "speaker": 1, "text": "So let's start with the basics. How do restaurants make money?" },
+        { "speaker": 2, "text": "Well, there's really three channels, right? Dine-in, takeout, and delivery." },
+        { "speaker": 1, "text": "Right. And with dine-in, you see the customer. You control the whole experience." },
+        { "speaker": 2, "text": "Takeout is similar. They walk in, grab their food, leave. Pretty straightforward." },
+        { "speaker": 1, "text": "But delivery... [sighs] that's where things get complicated." },
+        { "speaker": 2, "text": "Because your food goes to someone you've never met. And once it leaves your kitchen, you have no idea what happens next." }
+      ]
+    },
+    {
+      "id": "1-2",
+      "dialogue": [
+        { "speaker": 2, "text": "Let me paint the picture here. The restaurant makes the food. That's their job, they're great at it." },
+        { "speaker": 1, "text": "But then the platform takes over. DoorDash, Uber Eats, Grubhub..." },
+        { "speaker": 2, "text": "They own the customer relationship. They handle the payment. They do the delivery." },
+        { "speaker": 1, "text": "And here's the thing that really gets me. When something goes wrong?" },
+        { "speaker": 2, "text": "The customer complains to the platform, not the restaurant." },
+        { "speaker": 1, "text": "Exactly! You have zero direct recourse. None." }
+      ]
+    },
+    {
+      "id": "1-3",
+      "dialogue": [
+        { "speaker": 1, "text": "Okay, this next one is kind of scary. You ready?" },
+        { "speaker": 2, "text": "[laughs] You're being dramatic. But go ahead." },
+        { "speaker": 1, "text": "Picture this. Inside the store, everything looks great. Busy kitchen, staff working, orders flowing." },
+        { "speaker": 2, "text": "Okay..." },
+        { "speaker": 1, "text": "But on the delivery app? The store shows as unavailable. Completely invisible." },
+        { "speaker": 2, "text": "Oh wow. So customers literally can't see them." },
+        { "speaker": 1, "text": "Right! And the worst part? Nobody inside the restaurant even knows it's happening." },
+        { "speaker": 2, "text": "That's revenue that never even gets a chance to happen. That's terrifying actually." }
+      ]
+    }
+  ]
+}

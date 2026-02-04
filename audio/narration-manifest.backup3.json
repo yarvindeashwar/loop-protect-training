@@ -1,0 +1,1542 @@
+{
+  "voice_id": "cjVigY5qzO86Huf0OWal",
+  "voice_name": "Eric",
+  "model_id": "eleven_multilingual_v2",
+  "voice_settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.2
+  },
+  "slides": [
+    {
+      "id": "0-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Alright... so today, we're going to dive into something that's really, really important for restaurant operators. The question we're answering is simple... How do you actually protect your delivery revenue? And I mean really protect it... not just hope for the best.",
+          "audio": "s0-1_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Over the next little while... we're going to break down exactly how delivery works... we'll look at where the money leaks out... and most importantly, we'll show you how to fix it. So let's get into it.",
+          "audio": "s0-1_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's start at the very beginning. How does a restaurant make money? There are three channels... three ways customers can buy from you. First... dine-in. Customers come in, sit down, and you serve them. You see them. You control everything.",
+          "audio": "s1-1_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Second... takeout. Customers walk in, pick up their food, and leave. Still straightforward. You're still in control of the experience.",
+          "audio": "s1-1_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Third... delivery. And this is where everything changes. Your food goes out the door... handed to a driver you've never met... delivered to a customer you'll never see.",
+          "audio": "s1-1_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "See how delivery is fundamentally different? Once that food leaves your kitchen... you lose visibility into everything that happens next. The experience, the timing, whether the food arrives correctly... it's all out of your hands. Let me show you what that actually looks like.",
+          "audio": "s1-1_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-2",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's the delivery flow. You... the restaurant... you make the food. That's what you're good at. That's your job. You make it, you package it, you hand it to a driver.",
+          "audio": "s1-2_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "But then... the platform takes over. DoorDash. UberEats. Grubhub. They own the customer relationship now. They handle the ordering. They handle the payment. They handle the delivery. They are the face the customer sees.",
+          "audio": "s1-2_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "And the customer? They're at the end of this chain. They ordered through the platform. They paid the platform. When something goes wrong... they complain to the platform. Not to you.",
+          "audio": "s1-2_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Now look at this return arrow. 'Payout minus commissions.' The money flows back to you... but it's not the full amount. The platform takes their cut. And here's the key insight... the platform owns the customer relationship, the payment, and the delivery. You? You have zero direct recourse when things go wrong.",
+          "audio": "s1-2_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-3",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Okay... so we've established that delivery is different. You lose control. But here's the critical question... how exactly does that cost you money? Well... there are exactly two ways you lose money in delivery. Just two. And understanding these two types... is the key to fixing them.",
+          "audio": "s1-3_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "The first type... is called downtime loss. This is money that never comes in. Look at this picture. Inside the restaurant... kitchen running, staff ready, everything looks fine. But on the app? Customers can't see you. 'Currently Unavailable.' Those orders... they never happen. That revenue never existed.",
+          "audio": "s1-3_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "The second type... is called chargeback loss. This is money that gets taken back. You made the food, delivered it, got paid. But then the customer complains. The platform refunds them. And that money gets deducted from your payout. Invisible revenue... versus stolen revenue. Let me show you each one in detail.",
+          "audio": "s1-3_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-4",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's look at chargebacks... because these are the ones you can actually see on your statement. Here's how the flow works. Customer orders and pays. You make the food.",
+          "audio": "s1-4_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Driver picks up the food and delivers it to the customer. So far so good, right? Order complete.",
+          "audio": "s1-4_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "But then... step four... customer complains to the platform. Maybe the food was cold. Maybe something was missing. Maybe they're just trying to get free food.",
+          "audio": "s1-4_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "And what happens next? The platform refunds the customer immediately... no questions asked. And then they deduct that amount from your next payout. By the time you see it on your statement... the money is already gone. You earned it. You fulfilled the order. But it's been taken back.",
+          "audio": "s1-4_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-5",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Now let me show you the big picture... where all the money goes. This green bar... represents your potential revenue. Everything you could earn if you were online 100% of the time, with zero errors.",
+          "audio": "s1-5_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "But watch what happens. This gap on the right? That's downtime. Revenue that never came in because customers couldn't find you. It was never even possible. No line item. No report. Just... missing money.",
+          "audio": "s1-5_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "And this red slice? That's chargebacks. Revenue you actually earned... but the platform took it back. This one you can see on your statement... but by then it's already gone.",
+          "audio": "s1-5_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "What's left... is your net revenue. The money that actually goes into your bank account. Two different leaks... one invisible, one after the fact... both shrinking the same bar. And that's what we're here to fix.",
+          "audio": "s1-5_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-6",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's something most restaurant operators don't realize. The platforms... DoorDash, UberEats, Grubhub... they are grading you. Every single day. First metric... avoidable driver wait time. How long drivers wait beyond what you promised.",
+          "audio": "s1-6_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Second metric... error rate. How often orders have problems. Missing items. Wrong items. Quality issues.",
+          "audio": "s1-6_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Third metric... downtime percentage. How often your store is offline when it should be open.",
+          "audio": "s1-6_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Fourth metric... customer rating. What customers say about you. These aren't just numbers. This is your report card. Four metrics. Every restaurant is scored on all of them.",
+          "audio": "s1-6_step04.mp3"
+        },
+        {
+          "step": 5,
+          "text": "Good grades? You unlock badges. Top Eats on Uber. Most Loved on DoorDash. Featured placement. More visibility. More customers finding you organically.",
+          "audio": "s1-6_step05.mp3"
+        },
+        {
+          "step": 6,
+          "text": "Bad grades? The opposite. Less visibility. Fewer orders. And it becomes a death spiral. Bad ops hurt the customer experience. Those customers don't come back. Retention drops. Ratings drop. Fewer orders over time.",
+          "audio": "s1-6_step06.mp3"
+        }
+      ]
+    },
+    {
+      "id": "1-7",
+      "steps": [
+        {
+          "step": 1,
+          "text": "So... how do you actually fix all of this? There are four tools that work together as a system. Let me introduce each one.",
+          "audio": "s1-7_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Guard. Guard stops downtime before it costs you sales. When your store goes offline... Guard detects it and brings it back. Prevention.",
+          "audio": "s1-7_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Recover. Recover wins back money from unfair chargebacks. When money gets taken that shouldn't have been... Recover fights to get it back. Correction.",
+          "audio": "s1-7_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Re-Engage. Re-Engage responds to customer reviews automatically. When someone leaves a bad review... Re-Engage reaches out to win them back. Retention.",
+          "audio": "s1-7_step04.mp3"
+        },
+        {
+          "step": 5,
+          "text": "And SOTU... State of the Union. SOTU tells you what to fix and why. It benchmarks you against peers, flags your worst stores, and diagnoses root causes. Now let me show you how each one works... starting with Guard.",
+          "audio": "s1-7_step05.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's start with Guard. Guard is about keeping your stores online. But before we dive into how Guard works... you need to understand how delivery technology connects. Let me walk you through what we call the tech chain.",
+          "audio": "s2-1_step01.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-2",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's the basic chain. Your kitchen... connects to your POS. POS means Point of Sale... that's the computer system running your restaurant. Toast, Square, Aloha... whatever you use. The POS receives orders, routes them to the kitchen, and tracks everything. Then your POS connects to the delivery platforms... and the platforms connect to customers.",
+          "audio": "s2-2_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Now... many restaurants don't connect directly to each platform. Instead, they use middleware... a system that sits in between. The most common one is called OLO. With OLO... your POS connects to OLO once... and then OLO connects to all the platforms. One connection in... three connections out. DoorDash, UberEats, Grubhub... all through OLO.",
+          "audio": "s2-2_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Here's why this matters. Every arrow you see here... is a place where things can break. And with OLO... if that one OLO connection breaks? You go dark on every platform at once. DoorDash, UberEats, Grubhub... all gone simultaneously. The more arrows... the more ways things can silently go offline.",
+          "audio": "s2-2_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-3",
+      "steps": [
+        {
+          "step": 1,
+          "text": "So what actually causes the chain to break? There are three categories... three types of problems. Understanding which type you're dealing with... determines how you fix it.",
+          "audio": "s2-3_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Category one... platform decisions. This is when DoorDash or UberEats decides to shut you down. Drivers waiting too long. Too many cancelled orders. Hours mismatch. Nothing is technically broken... the platform just decided you're causing problems. They made a business decision to take you offline.",
+          "audio": "s2-3_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Category two... technology failures. This is when actual tech breaks. Your POS loses connection. OLO crashes. Your tablet dies. WiFi goes down. These are real technical problems that need technical solutions.",
+          "audio": "s2-3_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Category three... human actions. Someone accidentally toggled you offline. Or deliberately... because you're short-staffed and can't keep up. Each category needs a completely different response. You can't fix a WiFi problem the same way you fix an overwhelmed kitchen.",
+          "audio": "s2-3_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-4",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's the fundamental problem we're solving. It's called the GM blind spot. The GM... the general manager... is standing in the restaurant. Looking around.",
+          "audio": "s2-4_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "What do they see? Kitchen running. Staff ready. Dine-in working. Phones ringing. Green checkmarks everywhere. 'Everything looks fine.' And from inside the restaurant... it does look fine.",
+          "audio": "s2-4_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "But what does the customer see? They open DoorDash. They search for your restaurant. And they see... 'Currently Unavailable.' Your store has been invisible for 45 minutes. Maybe longer. And nobody inside has any idea. That's the blind spot. You can't see what you can't see. And that's exactly what Guard fixes.",
+          "audio": "s2-4_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-5",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Guard watches this entire chain continuously. From your kitchen, through the POS, to every delivery platform. Every connection point is monitored in real-time... so when something breaks, Guard knows immediately. Now let me show you exactly how Guard detects these problems.",
+          "audio": "s2-5_step01_NEW.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-6",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me tell you how Guard actually detects these problems. UberEats is the easy one. They give Guard an official API. When something happens to your store... UberEats sends an instant webhook notification. Boom. We know immediately.",
+          "audio": "s2-5_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "DoorDash? They don't cooperate like that. They don't give us an API. So Guard had to build three independent workarounds to monitor DoorDash stores.",
+          "audio": "s2-5_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Platform monitoring. Order flow analysis. Availability checks. Three different methods... all running simultaneously. And here's why that matters... if one method fails or misses something? The other two catch it. Redundancy is built in. We're not relying on any single source of truth.",
+          "audio": "s2-5_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-6b",
+      "steps": [
+        {
+          "step": 1,
+          "text": "If your restaurant uses OLO as middleware... Guard gets even faster. Let me explain how this works.",
+          "audio": "s2-6_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Without OLO... Guard polls your store status every few minutes. It's constantly checking, but there's a small delay. With OLO... Guard knows instantly when something changes. OLO tells us right away. And we still verify before taking action... we don't just blindly trust the notification. Best of both worlds.",
+          "audio": "s2-6_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-7",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Guard has three different restore modes. And this is really important to understand because different clients need different levels of automation.",
+          "audio": "s2-6b_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "First mode is Conservative. Auto-restores only happen in clear-cut scenarios where we're very confident. There's maximum human oversight. This is best for new clients who are just getting started with Guard.",
+          "audio": "s2-6b_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Second mode is Balanced. More aggressive restoration... Guard will fix more types of problems automatically. But it still verifies before taking action. This is the most common upgrade target... most clients move here eventually.",
+          "audio": "s2-6b_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Third mode is Aggressive. Maximum automation. Minimum review. Guard handles almost everything on its own. This is for well-trained teams who trust the system completely.",
+          "audio": "s2-6b_step04.mp3"
+        },
+        {
+          "step": 5,
+          "text": "Here's what we see in practice. Most chains start on Conservative. They want to see how Guard works. Once they see the results... once they trust it... they upgrade to Balanced. And that upgrade? That's the biggest unlock. That's where they really start seeing the value.",
+          "audio": "s2-6b_step05.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-8",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Guard doesn't just blindly retry when something goes wrong. That would be dangerous. There are three checks it performs before taking any action.",
+          "audio": "s2-7_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Check one... Is the problem still happening? Maybe it resolved itself. Check two... Did the last restore actually stick? Or did it fail? Check three... Should we escalate to a human instead of trying again?",
+          "audio": "s2-7_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "And if restoration keeps failing... if we try and it doesn't work... Guard backs off. It implements rate limiting. It escalates to humans to take a look. Then it automatically resumes trying once enough time has passed. Smart behavior, not just hammering away at a broken endpoint.",
+          "audio": "s2-7_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-9",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me explain the rate limiting logic in more detail. In the first window... Guard attempts restoration. It tries to fix the problem.",
+          "audio": "s2-8_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "If that fails... Guard waits. Then it retries. If it keeps failing repeatedly... Guard escalates to a human. Someone needs to take a look at this.",
+          "audio": "s2-8_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "The system doesn't hammer broken endpoints. It doesn't make things worse. It escalates smartly. It knows when to back off and ask for help.",
+          "audio": "s2-8_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-10",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's talk about how we measure this. Downtime percentage. It's a simple formula. Total downtime hours... divided by scheduled operating hours. Times one hundred to get a percentage.",
+          "audio": "s2-9_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Now here's a really important point. Only scheduled hours count. If your store is closed at 2am because that's your normal hours... that doesn't count as downtime. We're not penalizing you for being closed when you're supposed to be closed.",
+          "audio": "s2-9_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "We only measure time when the store should have been online but wasn't. Time when you were supposed to be taking orders... but customers couldn't reach you. That's real downtime.",
+          "audio": "s2-9_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-10b",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me show you what this looks like in the actual product. This is what you see when you log into Guard.",
+          "audio": "s2-10_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "In this example... Loop detected 3,718 downtime events. These are times when stores went offline. Out of those... Loop successfully restored 1,238 of them automatically. The overall downtime percentage came out to 1.88%.",
+          "audio": "s2-10_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "You also see avoidable wait time at 1.99 minutes. And unfulfilled rate at 1.56%. All of these metrics... visible at a glance. You can see exactly what's happening across all your stores.",
+          "audio": "s2-10_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-11",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Now let's talk about lost sales calculation. This is really important. This is NOT a guess. This is NOT some industry benchmark we're applying to your store.",
+          "audio": "s2-10b_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "The lost sales calculation is based on YOUR store's own historical sales data... for that specific day of the week... at that specific hour. We know what your store normally does during that time period.",
+          "audio": "s2-10b_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "So if your store normally averages $150 per hour on Friday lunch... and you were down for 2 hours during Friday lunch? That's $300 in lost sales. Not a guess. Based on your actual historical performance.",
+          "audio": "s2-10b_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-12",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Sales saved. This is the flip side. These are orders that came in after Guard restored the connection. Orders that would not have happened if the store stayed offline.",
+          "audio": "s2-11_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "And these aren't projected numbers. These aren't estimates. These are actual orders that actually came through.",
+          "audio": "s2-11_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Guard fixed the problem... orders flowed in... that's real money saved. Money that would have been lost if Guard wasn't watching.",
+          "audio": "s2-11_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-13",
+      "steps": [
+        {
+          "step": 1,
+          "text": "How do you stay informed about what Guard is doing? Multiple ways. First... real-time alerts when downtime happens. You know immediately.",
+          "audio": "s2-12_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Second... weekly digest reports that summarize everything. Third... SMS alerts to the GM's phone when something needs attention.",
+          "audio": "s2-12_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "And here's the cool part... you can act directly from your phone. Get a text message... reply 1 to snooze the alert... reply 2 to override Guard's decision. No app to open. No login required. Just reply to the text.",
+          "audio": "s2-12_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "2-14",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me summarize the Guard loop. Four steps that run continuously. Watch... Fix... Escalate... Report.",
+          "audio": "s2-13_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Continuous monitoring. Automatic restoration. Smart escalation when needed. Regular reporting on what happened. This runs in the background... all the time... so you don't have to watch it yourself.",
+          "audio": "s2-13_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Okay so Guard fixed uptime. Your stores stay online now. That's great. But here's the thing... not every order ends well. Even when you're online.",
+          "audio": "s3-1_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Some orders are fulfilled... but customers complain anyway. Some orders get missed or cancelled. Things still go wrong even when the store is up and running.",
+          "audio": "s3-1_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Money still leaks through these cracks. And that's where Recover comes in. Recover is about getting back money that was unfairly taken from you.",
+          "audio": "s3-1_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-2",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's break this down. Every order... every single order... lands in one of two states.",
+          "audio": "s3-2_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "State one is Fulfilled. The food was made and delivered. The customer received something. But they may still report a problem. Wrong items. Missing items. Quality wasn't good enough.",
+          "audio": "s3-2_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "State two is Unfulfilled. The order was never completed at all. Either it was missed... or it was cancelled. The customer never received anything. Most of your losses will trace back to one of these two buckets.",
+          "audio": "s3-2_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-3",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's look at fulfilled orders first. Customer got their food. But they report a problem. Wrong items in the bag. Missing items. Quality issues... the food was cold or damaged.",
+          "audio": "s3-3_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "What happens next? Platform issues a refund to the customer. And then... your payout gets reduced. The platform takes it out of your money.",
+          "audio": "s3-3_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "This is what we call the inaccurate order category. And it's the most common loss type that restaurants face. The order went out... but something was wrong... and now you're paying for it.",
+          "audio": "s3-3_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-4",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Now let's look at unfulfilled orders. These split into two different types.",
+          "audio": "s3-4_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Type one is Missed. The order came in to your system... but was never completed. Maybe it got lost in the POS. Maybe the kitchen never saw it. The order existed... but nothing happened.",
+          "audio": "s3-4_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Type two is Cancelled. Someone actively stopped the order. Item was out of stock. Kitchen was overwhelmed. Customer changed their mind. Different root causes require different dispute arguments. You can't dispute them the same way.",
+          "audio": "s3-4_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-5",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Why do orders get missed? Usually it's a technical problem. POS disconnected from the platform. Tablet crashed. Kitchen never saw the ticket come through. Guard actually prevents many of these by keeping you connected.",
+          "audio": "s3-5_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Why do orders get cancelled? Different reasons. Item out of stock... can't fulfill the order. Kitchen is overwhelmed and can't keep up. Platform cancelled it for some reason. These are operational issues. They still happen even with good technology.",
+          "audio": "s3-5_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Either way... whether missed or cancelled... the key question is this... was payment owed? Did the platform owe you money for that order?",
+          "audio": "s3-5_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-5b",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me give you the complete picture. There are three buckets of loss that restaurants experience.",
+          "audio": "s3-5b_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Bucket one... fulfilled losses. Customer reported a problem. Platform refunded them. And that refund came out of YOUR payout.",
+          "audio": "s3-5b_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Bucket two... unfulfilled losses. Order never completed. But was payment owed? Did the platform take money they shouldn't have?",
+          "audio": "s3-5b_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Bucket three... unattributed losses. These aren't tied to any specific order. System adjustments. Mysterious deductions. Harder to dispute but still real losses. Recover handles all three of these buckets.",
+          "audio": "s3-5b_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-6",
+      "steps": [
+        {
+          "step": 1,
+          "text": "For fulfilled losses... there's a key flag to look for. It's called the merchant charged flag. This tells you whether the platform actually charged you.",
+          "audio": "s3-6_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "If merchant charged is true... the platform took money from you for this issue. That's a Recover loss. That's money we can try to get back.",
+          "audio": "s3-6_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "If merchant charged is false... it's an order accuracy issue. The customer complained, but the platform didn't charge you. No money to recover. Still important to track for operations... but not a financial recovery opportunity.",
+          "audio": "s3-6_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-7",
+      "steps": [
+        {
+          "step": 1,
+          "text": "For unfulfilled orders... the question is simple. Was payment owed? Let's break this down.",
+          "audio": "s3-7_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Deducted means the platform owed you money... and then took it out of a future payout. They clawed it back. That's recoverable. We can fight for that.",
+          "audio": "s3-7_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Never paid means the order never completed and no payment ever existed. But that's still a loss. Revenue you should have had. Both scenarios represent real losses. Both are potentially recoverable.",
+          "audio": "s3-7_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-8",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Some losses aren't tied to any order at all. These are tricky. System errors. Data mismatches between systems. Fraud. Unexplained adjustments.",
+          "audio": "s3-8_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "These can't be directly disputed because there's no order to reference. No order number to point to. They require escalation or negotiation with the platform.",
+          "audio": "s3-8_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Smaller in volume than order-related losses... but they still need handling. Every dollar counts.",
+          "audio": "s3-8_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-9",
+      "steps": [
+        {
+          "step": 1,
+          "text": "So to summarize... four buckets of loss. One goal. Won disputes. Getting money back that shouldn't have been taken.",
+          "audio": "s3-9_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "That's what Recover exists to maximize. Every loss fits into this map somewhere. And Recover works to get back whatever it can.",
+          "audio": "s3-9_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-10",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's something critical to understand. Time matters. A lot. DoorDash, UberEats, Grubhub... they all have dispute windows. Limited time to contest a charge.",
+          "audio": "s3-10_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Miss that window? You have no recourse. The charge stands forever. There's no appealing it. It's done.",
+          "audio": "s3-10_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Recover works within these windows automatically. It tracks the deadlines. It files disputes before time runs out. You don't have to remember when each window closes.",
+          "audio": "s3-10_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-11",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me walk you through Loop's recovery pipeline. Step one... identify all recoverable losses. Find every charge that might be disputable.",
+          "audio": "s3-11_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Step two... check eligibility and documentation. Is this within the window? Do we have proof? Step three... dispute formally with the platform. Submit the actual dispute.",
+          "audio": "s3-11_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Step four... track status and escalate if needed. Follow up on pending disputes. Push back when denied unfairly. All of this happens at scale. All automatic. Across all your stores.",
+          "audio": "s3-11_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-12",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Not every loss is worth disputing. Some are too small. Some have no proof. So there are four gates that a potential dispute has to pass.",
+          "audio": "s3-12_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Gate one... is it within the dispute window? Gate two... do we have proof to support the claim? Gate three... is the amount worth the effort? Gate four... will this dispute likely win based on the evidence?",
+          "audio": "s3-12_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Only disputes that pass all four gates get filed. We don't waste time on hopeless cases. We focus resources where they'll actually work.",
+          "audio": "s3-12_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-13",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me show you the dispute lifecycle. How a dispute moves through the system. First... it's detected from the data. We find a recoverable loss. Then it's queued for filing. Then it's submitted to the platform.",
+          "audio": "s3-13_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "After submission... it's either Accepted... the platform agrees and refunds you. Or Denied... they reject the claim. Or Expired... the window closed before a decision. That last one is bad. We try to prevent that.",
+          "audio": "s3-13_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-14",
+      "steps": [
+        {
+          "step": 1,
+          "text": "The key metric for Recover is win rate. Simple formula. Won disputes divided by total submitted. What percentage do we actually win?",
+          "audio": "s3-14_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "For inaccurate orders... typical win rate is 60 to 75%. That's pretty good. For missed orders... 50 to 70%. For cancelled orders... 40 to 60%. Different categories have different success rates.",
+          "audio": "s3-14_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Even at 60% win rate... the ROI is strong. You're getting back money that was just gone before. Money you would have lost completely without fighting for it.",
+          "audio": "s3-14_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-15",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's what the Recover dashboard looks like in practice. Let me walk you through the numbers.",
+          "audio": "s3-15_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Enabled Customer Refunds shows $183,000. That's the total pool of money that could potentially be recovered. Disputed shows $113,000. That's how much we actually filed disputes for. Settled shows $106,000. Decisions have been made on that amount.",
+          "audio": "s3-15_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Won shows $73,000. That's actual money recovered. Back in the restaurant's pocket. That comes out to a 68.74% win rate. Follow the flow from left to right... from total losses to actual money back.",
+          "audio": "s3-15_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-15b",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Common question we get... 'My payout doesn't match what Recover says I won.' There's a good reason for that. Let me explain.",
+          "audio": "s3-15b_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Here's what happens. Dispute gets filed in September. Platform approves it in October. But the actual payout... the money hitting your account? That happens in November.",
+          "audio": "s3-15b_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Same money. Different dates in different systems. The cash is real. It's coming. It's just on a different timeline than when the dispute was won. Don't panic if the numbers don't match on any given day.",
+          "audio": "s3-15b_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3-17",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me repeat that because it's important. When clients say their payout doesn't match Recover... this is usually why.",
+          "audio": "s3-17_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Dispute filed in September. Approved in October. Payout in November. Three different dates in three different reports.",
+          "audio": "s3-17_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "The money is real. The timeline is just delayed. Same money... different dates. Now let's move on to Re-Engage.",
+          "audio": "s3-17_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Re-Engage. This is our automated review response system. It's all about winning back customers who had a bad experience.",
+          "audio": "s3b-1_step01.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-2",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's the thing about reviews. Most restaurant brands... they do this really poorly. Or they don't do it at all. It's a huge missed opportunity.",
+          "audio": "s3b-2_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Think about it. Dozens of reviews coming in every single day. Most of them get no response whatsoever. Best practice says you should respond within 24 hours. That's what the platforms reward.",
+          "audio": "s3b-2_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "But reality? Most restaurants respond late... or never respond at all. The opportunity to save that customer relationship just slips away.",
+          "audio": "s3b-2_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-3",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Re-Engage is automated review response. It handles this at scale so your team doesn't have to.",
+          "audio": "s3b-3_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "It captures low-rated reviews as they come in. It generates AI-powered responses that sound human. It can optionally include a coupon to win the customer back.",
+          "audio": "s3b-3_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "The response posts automatically. Then it tracks whether that customer actually comes back and orders again. Thousands of reviews handled... without any manual effort from your team.",
+          "audio": "s3b-3_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-3b",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me show you what this looks like in the actual product.",
+          "audio": "s3b-3b_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Average rating across all stores... 4.36 stars out of 5. Across 41,799 individual ratings. Total reviews... 41,800. Replied to... 10,280 of them. That's automated responses that went out.",
+          "audio": "s3b-3b_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Waiting for response... 4,225 reviews in the queue. Plus there's an AI Summary panel that shows you the main themes customers are talking about. What's working. What's not.",
+          "audio": "s3b-3b_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-4",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Both DoorDash and UberEats use 1 to 5 star rating systems. Customers can leave a rating and optionally add written comments explaining their experience.",
+          "audio": "s3b-4_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Re-Engage targets the 1 to 3 star reviews. That's where the win-back opportunity is. Those are unhappy customers who might still come back if you reach out and make it right.",
+          "audio": "s3b-4_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-5",
+      "steps": [
+        {
+          "step": 1,
+          "text": "There are two types of responses that Re-Engage can send. Let me explain the difference.",
+          "audio": "s3b-5_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "First type... AI-Generated responses. These are written by GPT-4. They're personalized to what the customer actually said in their review. They sound empathetic and human.",
+          "audio": "s3b-5_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Second type... Template responses. These are pre-written by your brand. They're consistent. They're faster. Most clients use AI for the really negative reviews where personalization matters... and templates for neutral reviews where speed is more important.",
+          "audio": "s3b-5_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-6",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me walk you through how the AI response works. A review comes in. The system checks it against your configured rules. If it matches... the AI reads what the customer actually wrote.",
+          "audio": "s3b-6_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "GPT-4 then drafts a response. It acknowledges the problem. It apologizes appropriately. It explains what happened if relevant. It offers a coupon if you've configured one.",
+          "audio": "s3b-6_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "The response posts automatically to the platform. And here's what's cool... GPT-4 writes like a real human would. But we guide and constrain it to sound like YOUR brand. Your voice. Your tone.",
+          "audio": "s3b-6_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-7",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Configs are the rules that determine which reviews get responses. Think of them as filters. Star rating threshold. Keyword triggers. Which platform. Time of day.",
+          "audio": "s3b-7_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "You can combine these with boolean logic. AND conditions. OR conditions. NOT conditions. Build exactly the rules you need.",
+          "audio": "s3b-7_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Every review that comes in must match at least one config to get a response. If it doesn't match any rules... it gets skipped. You control exactly which reviews get handled.",
+          "audio": "s3b-7_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-8",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Coupons are optional. You can include them or not. The amount... the type... the expiration date... all configurable based on your strategy.",
+          "audio": "s3b-8_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Common strategy... offer coupons for 1 to 2 star reviews. Those customers are really upset. A coupon gives them a reason to try you again.",
+          "audio": "s3b-8_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "For 3-star reviews... maybe no coupon needed. Customer wasn't that upset. A thoughtful response might be enough. Less cost. Same win-back potential.",
+          "audio": "s3b-8_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-9",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Think of configs as 'if this, then that' rules. Let me give you some examples.",
+          "audio": "s3b-9_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Example one... customer mentions missing items AND gives 1 or 2 stars. Response... AI-generated with a $10 coupon. Big apology. Make it right.",
+          "audio": "s3b-9_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Example two... quality issue mentioned. Response... AI with a $5 coupon. Example three... customer complains about wait time. Response... AI, but no coupon. Wait time usually isn't the restaurant's fault. Different situations... different responses.",
+          "audio": "s3b-9_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-10",
+      "steps": [
+        {
+          "step": 1,
+          "text": "The complete pipeline. Step one... capture the review when it comes in. Step two... evaluate it against your configs. Does it match any rules? Step three... generate the appropriate response.",
+          "audio": "s3b-10_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Step four... optional human review. You can have someone approve responses before they go out. Step five... post to the platform. Step six... track whether that customer comes back and orders again.",
+          "audio": "s3b-10_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Fully automated. But human-supervised if you want. You stay in control.",
+          "audio": "s3b-10_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-11",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Key metrics to track. First... re-engagement rate. Did the customer actually come back? Did they order again after receiving your response?",
+          "audio": "s3b-11_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Second... voucher lift. How much additional revenue came from customers who used coupons? Was it worth the discount?",
+          "audio": "s3b-11_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Third... response time. How fast are you getting back to customers? Same-day is the goal. Faster responses mean better win-back rates.",
+          "audio": "s3b-11_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-12",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Timing matters a lot here. Ideal response time is same day. Customer leaves a bad review in the morning... they hear back by evening. That's ideal.",
+          "audio": "s3b-12_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Acceptable is within 48 hours. Still reasonable. But after 3 days? Customer may not even see it. They've moved on. The coupon might expire. The opportunity is lost.",
+          "audio": "s3b-12_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-13",
+      "steps": [
+        {
+          "step": 1,
+          "text": "This creates a virtuous cycle. Capture reviews as they come in. Respond quickly. Recover customers who might have been lost. Measure the results.",
+          "audio": "s3b-13_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "And then the loop repeats. Daily. Continuously. Every unhappy customer is an opportunity to make it right and win them back.",
+          "audio": "s3b-13_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "3b-14",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Re-Engage handles the volume problem. Automated responses at scale. No more reviews falling through the cracks.",
+          "audio": "s3b-14_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "But edge cases still need human attention. Really unusual situations. Complaints that need investigation. Re-Engage isn't replacing human judgment. It's handling the 80 percent... so humans can focus on the 20 percent that actually needs them.",
+          "audio": "s3b-14_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "So now we've covered Guard for uptime. Recover for disputes. Re-Engage for customer retention. But there's still a question we haven't answered.",
+          "audio": "s4-1_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "What about root causes? Why did things break in the first place? Why are certain stores having problems? Why do the same issues keep happening?",
+          "audio": "s4-1_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "That's where SOTU comes in. State of the Union. SOTU is the diagnostic layer that tells you what's actually going wrong and why.",
+          "audio": "s4-1_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-2",
+      "steps": [
+        {
+          "step": 1,
+          "text": "SOTU answers three fundamental questions that every operator needs to know.",
+          "audio": "s4-2_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Question one... Leaderboard. Where do I stand? How am I doing overall? Question two... Benchmark. How am I doing compared to my peers? Am I above or below average?",
+          "audio": "s4-2_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Question three... Diagnostic. What should I actually fix? What are the specific issues at specific stores? Each report builds on the previous one. Rank... compare... diagnose.",
+          "audio": "s4-2_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-3",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let's look at each one. Leaderboard shows your overall score versus all stores in your portfolio. Where does each location rank?",
+          "audio": "s4-3_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Benchmark compares your metrics to the top 10 percent performers... and to industry average. Are you leading or lagging?",
+          "audio": "s4-3_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Diagnostic gets specific. Which items are causing problems? Which locations need attention? What themes keep coming up? From high-level to actionable details.",
+          "audio": "s4-3_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-3b",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me show you what the Delivery Intelligence dashboard looks like. This is where you see the diagnostic details.",
+          "audio": "s4-3b_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "In this example... total error charges are $175,409 across 21,000 individual errors. The top cause is Missing Entire Item at $41,000. That's a lot of missing items.",
+          "audio": "s4-3b_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Worst item is Dave's #2 at $35,000 in charges. Worst location is Dearborn, Michigan. See how we go from aggregate loss... to specific item... at specific store. That's the diagnostic power of SOTU.",
+          "audio": "s4-3b_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-4",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Every week, you receive multiple reports. Leaderboard goes to leadership. The executives who need the big picture. CSV exports go to ops managers who need to dig into the data.",
+          "audio": "s4-4_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Diagnostic PDFs go to store level for action. Different formats for different stakeholders. Everyone gets what they need to do their job.",
+          "audio": "s4-4_step02.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-5",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Your overall score is built from four metrics. Let me break down how much each one matters.",
+          "audio": "s4-5_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Order Accuracy is worth 20 points. Wait Time is worth 40 points. That's the biggest lever. Wait time alone is worth 40 percent of your total score.",
+          "audio": "s4-5_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Downtime is worth 20 points. Bad Ratings is worth 20 points. If you want to move the needle... focus on wait time first. It has the biggest impact on your score.",
+          "audio": "s4-5_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-6",
+      "steps": [
+        {
+          "step": 1,
+          "text": "How is each metric calculated? Order Accuracy... orders with no refund claims divided by total orders. What percentage of orders had no complaints?",
+          "audio": "s4-6_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Wait Time... average time from order placed to pickup. How long are drivers waiting? Downtime... hours offline divided by scheduled hours. What percentage of time were you dark?",
+          "audio": "s4-6_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Bad Ratings... 1 to 2 star reviews divided by total reviews. What percentage of customers are really unhappy?",
+          "audio": "s4-6_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-7",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Score bands tell you how you're doing. 90 to 100 is excellent. Top tier performance. 80 to 89 is good. Solid. 70 to 79 is fair. Room for improvement.",
+          "audio": "s4-7_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "60 to 69 needs improvement. Requires attention. Below 60 is critical. Urgent action needed.",
+          "audio": "s4-7_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Here's something interesting. The scoring curve rewards improvement more when you're struggling. Going from 5 percent error rate to 4 percent gives a bigger score boost than going from 1 percent to half a percent. Easier to make progress when you start low.",
+          "audio": "s4-7_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-8",
+      "steps": [
+        {
+          "step": 1,
+          "text": "When a client asks 'where do I stand'... this is the answer. The leaderboard shows everything.",
+          "audio": "s4-8_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Chain overall score. Your ranking versus all other chains. Each store within your chain. How stores compare to each other.",
+          "audio": "s4-8_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Store-by-store comparison. Leadership visibility into performance. And it creates friendly competition. Stores want to move up the leaderboard.",
+          "audio": "s4-8_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-9",
+      "steps": [
+        {
+          "step": 1,
+          "text": "When we compare you to peers... segment matters. Segment means restaurant type. Not geography.",
+          "audio": "s4-9_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "McDonald's gets compared to other QSR chains. Quick service restaurants. Not to a steakhouse. You're compared to restaurants that are similar to yours.",
+          "audio": "s4-9_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Four peer groups. Your own chain... your internal benchmark. Your industry segment. The top 10 percent of performers. And all your internal stores against each other.",
+          "audio": "s4-9_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-10",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Every store has a bad day sometimes. One bad day doesn't mean there's an operational problem. Random variation happens.",
+          "audio": "s4-10_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "That's why we don't flag bad days. We flag bad patterns. There's a difference. A pattern means something is systematically wrong.",
+          "audio": "s4-10_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Elevated wait times every Friday? That's a pattern. Flagged. High inaccuracy during lunch shifts specifically? Pattern. Flagged. That's a signal... not noise. Something is actually wrong.",
+          "audio": "s4-10_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-11",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Three rules for detecting patterns. Each one looks at a different time window.",
+          "audio": "s4-11_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Chronic rule uses an 84-day window. That's about 3 months. It detects slow-burn problems that have been building for a while. Recent rule uses a 28-day window. About a month. It detects emerging problems that are getting worse.",
+          "audio": "s4-11_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Acute rule uses a 14-day window. Two weeks. It detects crisis situations that are happening right now. Any single rule triggered means flagged. Requires attention.",
+          "audio": "s4-11_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-12",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Why do shorter windows have higher thresholds before triggering? Because daily variance is higher over short periods.",
+          "audio": "s4-12_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "A single bad shift affects a 14-day average much more than it affects an 84-day average. The math is different.",
+          "audio": "s4-12_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Think of it like a doctor. A slightly elevated reading that persists over 3 months... that's concerning. Worth investigating. The same elevated reading over just 2 weeks? Might just be a bad couple of weeks. Different threshold for different timeframes.",
+          "audio": "s4-12_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-13",
+      "steps": [
+        {
+          "step": 1,
+          "text": "For stores that get flagged... SOTU generates a diagnostic PDF. This is where it gets really actionable.",
+          "audio": "s4-13_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "The PDF shows a summary of what's flagged. Then a day-wise breakdown... which days of the week are worst? Then hour-wise... which shifts have problems?",
+          "audio": "s4-13_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Theme analysis... is it all inaccuracies? All wait time? All ratings? And item analysis... which specific menu items are causing the most issues?",
+          "audio": "s4-13_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-14",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me walk you through an example. Flag triggered... this store has high inaccuracy. Something's wrong. Let's diagnose it.",
+          "audio": "s4-14_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Day analysis shows Friday and Saturday are the worst. Hour analysis shows 5 to 7 PM... dinner peak. Theme analysis shows it's all missing items. Items aren't making it into bags.",
+          "audio": "s4-14_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Item analysis shows guacamole... sour cream... salsa. All sides. The root cause becomes clear... the sides station is chaotic during dinner rush. Items are getting forgotten.",
+          "audio": "s4-14_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "Recommendation? Retrain the dinner shift on sides station procedures. Maybe reorganize the layout to make it easier. Specific problem... specific solution.",
+          "audio": "s4-14_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-15",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me show you the complete data flow. Data gets collected from Guard... from Recover... from Re-Engage... and from platform APIs directly.",
+          "audio": "s4-15_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Metrics get calculated from all that data. Scores get generated. Patterns get detected. Flags get triggered when something needs attention.",
+          "audio": "s4-15_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Diagnostics get created for flagged stores. Reports get delivered to the right people. The system takes you from 'there might be a problem'... all the way to 'here's exactly what to fix.' In one weekly report.",
+          "audio": "s4-15_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "4-16",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Three actions to take after every SOTU report. Make these part of your weekly routine.",
+          "audio": "s4-16_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Action one... review the leaderboard with leadership. Where do we stand this week? Action two... check your benchmark versus peers. Are we improving or falling behind?",
+          "audio": "s4-16_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Action three... act on flagged stores. Distribute the diagnostic PDFs to store managers within 24 hours. The reports are only valuable if you actually act on them. Don't just read them... use them.",
+          "audio": "s4-16_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "5-1",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Let me bring this all together. The complete equation. Guard reduces downtime... keeps you online. Recover wins back money... gets you paid what you're owed.",
+          "audio": "s5-1_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Re-Engage wins back customers... keeps people coming back. SOTU identifies root causes... shows you what to fix.",
+          "audio": "s5-1_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "Together? Better metrics across the board. Algorithmic lift from the platforms. Customer loyalty that compounds. And root cause visibility so problems don't keep repeating. That's the complete system.",
+          "audio": "s5-1_step03.mp3"
+        }
+      ]
+    },
+    {
+      "id": "5-2",
+      "steps": [
+        {
+          "step": 1,
+          "text": "Here's the final insight. Operations compound. They build on themselves. In either direction.",
+          "audio": "s5-2_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "The virtuous cycle... better uptime leads to more orders. More orders mean better accuracy data. Better accuracy means better ratings. Better ratings mean better platform ranking. Better ranking means more visibility. More visibility means more customers. And more customers mean more revenue to invest in operations. It spirals upward.",
+          "audio": "s5-2_step02.mp3"
+        },
+        {
+          "step": 3,
+          "text": "The death spiral is the opposite. Downtime not detected... customers order elsewhere. Chargebacks pile up. Can't afford staff. Short-staffed means worse service. Worse service means more complaints. More complaints mean worse ratings. Worse ratings mean less visibility. It spirals downward.",
+          "audio": "s5-2_step03.mp3"
+        },
+        {
+          "step": 4,
+          "text": "There is no middle ground. You're either improving or deteriorating. The system is always moving in one direction or the other. Loop helps you move in the right direction. Loop helps you improve.",
+          "audio": "s5-2_step04.mp3"
+        }
+      ]
+    },
+    {
+      "id": "5-3",
+      "steps": [
+        {
+          "step": 1,
+          "text": "To summarize everything... Guard keeps you online. Recover wins back unfair charges. Re-Engage wins back unhappy customers. SOTU tells you what to fix and why.",
+          "audio": "s5-3_step01.mp3"
+        },
+        {
+          "step": 2,
+          "text": "Prevent. Recover. Retain. Diagnose. Improve. That's the system that compounds. That's how you protect your delivery revenue. Thank you.",
+          "audio": "s5-3_step02.mp3"
+        }
+      ]
+    }
+  ]
+}
