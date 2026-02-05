@@ -150,19 +150,181 @@
     z-index: 100;
   }
 
-  /* ── AUDIO PLAYER CONTROLS ── */
-  .audio-controls {
+  /* ── VIDEO PLAYER CONTROLS ── */
+  .player-controls {
     position: fixed;
-    bottom: 20px;
-    right: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 300;
+    background: linear-gradient(transparent, rgba(0,0,0,0.95));
+    padding: 20px 30px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .player-controls.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .player-controls:hover {
+    opacity: 1;
+  }
+
+  /* Progress bar (full width, clickable) */
+  .player-progress-container {
+    width: 100%;
+    height: 6px;
+    background: var(--gray-dark);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+  }
+  .player-progress-container:hover {
+    height: 8px;
+  }
+  .player-progress-bar {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s linear;
+    position: relative;
+  }
+  .player-progress-bar::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--white);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .player-progress-container:hover .player-progress-bar::after {
+    opacity: 1;
+  }
+
+  /* Section markers on progress bar */
+  .section-marker {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--gray);
+    opacity: 0.5;
+  }
+
+  /* Control buttons row */
+  .player-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .player-left, .player-center, .player-right {
     display: flex;
     align-items: center;
     gap: 12px;
-    z-index: 200;
-    background: rgba(0,0,0,0.8);
+  }
+  .player-center {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .player-btn {
+    background: none;
+    border: none;
+    color: var(--gray-light);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .player-btn:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+  .player-btn.active {
+    color: var(--teal);
+  }
+  .player-btn.play-pause {
+    font-size: 1.6rem;
     padding: 10px 16px;
-    border-radius: 30px;
+    background: var(--teal);
+    color: #000;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+  }
+  .player-btn.play-pause:hover {
+    background: var(--blue-light);
+    color: #000;
+  }
+
+  /* Section dropdown */
+  .section-select {
+    background: rgba(255,255,255,0.1);
     border: 1px solid var(--gray-dark);
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-width: 180px;
+  }
+  .section-select:hover {
+    background: rgba(255,255,255,0.15);
+  }
+  .section-select option {
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  /* Time display */
+  .player-time {
+    font-size: 0.8rem;
+    color: var(--gray-light);
+    font-variant-numeric: tabular-nums;
+    min-width: 100px;
+  }
+
+  /* Current slide info */
+  .player-slide-info {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Audio status in player */
+  .player-status {
+    font-size: 0.7rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+  }
+  .player-status.playing {
+    color: var(--teal);
+  }
+
+  /* Hide old audio controls */
+  .audio-controls {
+    display: none !important;
   }
   .audio-btn {
     background: none;
@@ -1423,7 +1585,7 @@
   <div style="display: flex; gap: 28px; margin-top: 20px;">
     <!-- BP1 -->
     <div class="bp-col" id="s23-bp1">
-      <div class="bp-num">Break Point 1</div>
+      <div class="bp-num">Break Point 1: <span style="color: var(--red);">PBP</span></div>
       <div class="bp-title" style="color: var(--red);">Platform Shuts<br>the Store Down</div>
       <ul class="bp-list">
         <li>Drivers waiting too long at pickup</li>
@@ -1434,7 +1596,7 @@
     </div>
     <!-- BP2 -->
     <div class="bp-col" id="s23-bp2">
-      <div class="bp-num">Break Point 2</div>
+      <div class="bp-num">Break Point 2: <span style="color: var(--gold);">RSO</span></div>
       <div class="bp-title" style="color: var(--gold);">Tech Connection<br>Broke</div>
       <ul class="bp-list">
         <li>POS lost connection to platform</li>
@@ -1447,7 +1609,7 @@
     </div>
     <!-- BP3 -->
     <div class="bp-col" id="s23-bp3">
-      <div class="bp-num">Break Point 3</div>
+      <div class="bp-num">Break Point 3: <span style="color: var(--blue);">PBR</span></div>
       <div class="bp-title" style="color: var(--blue);">Restaurant<br>Paused Itself</div>
       <ul class="bp-list">
         <li><strong style="color: var(--gray-light);">Accidental:</strong> Wrong button, OLO glitch toggled store off</li>
@@ -7648,6 +7810,11 @@
     // Update labels
     slideLabel.textContent = s.id;
     stepCounter.textContent = currentStep + ' / ' + s.steps;
+
+    // Update player UI if it exists
+    if (typeof updatePlayerUI === 'function') {
+      updatePlayerUI();
+    }
   }
 
   function next() {
@@ -7679,7 +7846,7 @@
 
   // Click
   document.addEventListener('click', function(e) {
-    if (e.target.closest('.nav-hint, .step-counter, .slide-label')) return;
+    if (e.target.closest('.nav-hint, .step-counter, .slide-label, .player-controls, .audio-controls')) return;
     // Don't advance manually when auto-play audio is running
     if (presentationStarted && autoAdvance && audioEnabled) return;
     next();
@@ -7739,7 +7906,7 @@
   document.head.appendChild(startContent);
   document.body.appendChild(startOverlay);
 
-  // Create audio controls UI
+  // Create audio controls UI (hidden, kept for compatibility)
   var audioControls = document.createElement('div');
   audioControls.className = 'audio-controls';
   audioControls.innerHTML = `
@@ -7754,6 +7921,242 @@
   var audioAutoAdvanceBtn = document.getElementById('audioAutoAdvance');
   var audioProgressBar = document.getElementById('audioProgressBar');
   var audioStatus = document.getElementById('audioStatus');
+
+  // ═══════════════════════════════════════
+  // NEW VIDEO PLAYER CONTROLS
+  // ═══════════════════════════════════════
+
+  // Section definitions for navigation
+  var sections = [
+    { id: '0', name: 'Introduction', startSlide: 0 },
+    { id: '1', name: 'Section 1: How Delivery Works', startSlide: 1 },
+    { id: '2', name: 'Section 2: Guard (Downtime)', startSlide: 8 },
+    { id: '3', name: 'Section 3: Recover (Chargebacks)', startSlide: 24 },
+    { id: '3b', name: 'Section 3b: Re-Engage (Reviews)', startSlide: 42 },
+    { id: '4', name: 'Section 4: SOTU (Diagnostics)', startSlide: 57 },
+    { id: '5', name: 'Section 5: Summary', startSlide: 74 }
+  ];
+
+  // Create player controls
+  var playerControls = document.createElement('div');
+  playerControls.className = 'player-controls';
+  playerControls.innerHTML = `
+    <div class="player-progress-container" id="playerProgressContainer">
+      <div class="player-progress-bar" id="playerProgressBar"></div>
+    </div>
+    <div class="player-buttons">
+      <div class="player-left">
+        <button class="player-btn" id="playerPrev" title="Previous Slide (←)">⏮</button>
+        <button class="player-btn play-pause" id="playerPlayPause" title="Play/Pause (Space)">▶</button>
+        <button class="player-btn" id="playerNext" title="Next Slide (→)">⏭</button>
+        <button class="player-btn" id="playerReplay" title="Replay This Slide (R)">🔄</button>
+        <span class="player-time" id="playerTime">Slide 1 of ${slides.length}</span>
+      </div>
+      <div class="player-center">
+        <select class="section-select" id="sectionSelect">
+          <option value="">Jump to section...</option>
+          ${sections.map(function(s) { return '<option value="' + s.startSlide + '">' + s.name + '</option>'; }).join('')}
+        </select>
+      </div>
+      <div class="player-right">
+        <button class="player-btn" id="playerAudio" title="Toggle Audio (A)">🔊</button>
+        <button class="player-btn active" id="playerAutoPlay" title="Auto-Play (V)">⏯</button>
+        <span class="player-status" id="playerStatus">READY</span>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(playerControls);
+
+  var playerProgressContainer = document.getElementById('playerProgressContainer');
+  var playerProgressBar = document.getElementById('playerProgressBar');
+  var playerPlayPause = document.getElementById('playerPlayPause');
+  var playerPrev = document.getElementById('playerPrev');
+  var playerNext = document.getElementById('playerNext');
+  var playerTime = document.getElementById('playerTime');
+  var sectionSelect = document.getElementById('sectionSelect');
+  var playerAudioBtn = document.getElementById('playerAudio');
+  var playerAutoPlayBtn = document.getElementById('playerAutoPlay');
+  var playerStatusEl = document.getElementById('playerStatus');
+
+  // Add section markers to progress bar
+  function addSectionMarkers() {
+    sections.forEach(function(section, idx) {
+      if (idx === 0) return; // Skip first marker at 0%
+      var marker = document.createElement('div');
+      marker.className = 'section-marker';
+      marker.style.left = ((section.startSlide / slides.length) * 100) + '%';
+      marker.title = section.name;
+      playerProgressContainer.appendChild(marker);
+    });
+  }
+
+  // Update player UI
+  function updatePlayerUI() {
+    // Check if player elements exist yet (they're created after this function is defined)
+    if (!playerProgressBar || !playerTime || !playerPlayPause) return;
+
+    // Update progress bar
+    var totalSlides = slides.length;
+    var progress = ((currentSlide + 1) / totalSlides) * 100;
+    playerProgressBar.style.width = progress + '%';
+
+    // Update time/position
+    playerTime.textContent = 'Slide ' + (currentSlide + 1) + ' of ' + totalSlides;
+
+    // Update play/pause button
+    if (audioEnabled && autoAdvance && presentationStarted) {
+      playerPlayPause.textContent = '⏸';
+      playerPlayPause.title = 'Pause (Space)';
+    } else {
+      playerPlayPause.textContent = '▶';
+      playerPlayPause.title = 'Play (Space)';
+    }
+
+    // Update audio button
+    playerAudioBtn.textContent = audioEnabled ? '🔊' : '🔇';
+    playerAudioBtn.classList.toggle('active', audioEnabled);
+
+    // Update auto-play button
+    playerAutoPlayBtn.classList.toggle('active', autoAdvance);
+
+    // Update status
+    if (!presentationStarted) {
+      playerStatusEl.textContent = 'READY';
+      playerStatusEl.classList.remove('playing');
+    } else if (audioEnabled && autoAdvance) {
+      playerStatusEl.textContent = 'PLAYING';
+      playerStatusEl.classList.add('playing');
+    } else if (audioEnabled && !autoAdvance) {
+      playerStatusEl.textContent = 'PAUSED';
+      playerStatusEl.classList.remove('playing');
+    } else {
+      playerStatusEl.textContent = 'MANUAL';
+      playerStatusEl.classList.remove('playing');
+    }
+
+    // Update section dropdown to show current section
+    var currentSection = '';
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (currentSlide >= sections[i].startSlide) {
+        currentSection = sections[i].startSlide.toString();
+        break;
+      }
+    }
+    sectionSelect.value = currentSection;
+  }
+
+  // Progress bar click to seek
+  playerProgressContainer.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var rect = playerProgressContainer.getBoundingClientRect();
+    var clickX = e.clientX - rect.left;
+    var percent = clickX / rect.width;
+    var targetSlide = Math.floor(percent * slides.length);
+    targetSlide = Math.max(0, Math.min(slides.length - 1, targetSlide));
+    jumpToSlide(targetSlide);
+  });
+
+  // Jump to specific slide
+  function jumpToSlide(slideIndex) {
+    if (audioPlayer) {
+      audioPlayer.pause();
+    }
+    currentSlide = slideIndex;
+    var s = slides[currentSlide];
+    currentStep = s.steps; // Show all content
+    currentAudioStep = 1;
+    skipAnimationWait = false;
+    render();
+    updatePlayerUI();
+    if (audioEnabled && presentationStarted) {
+      playCurrentAudio();
+    }
+  }
+
+  // Play/Pause toggle
+  function togglePlayPause() {
+    if (!presentationStarted) {
+      startPresentation();
+      playerControls.classList.add('visible');
+      return;
+    }
+
+    if (audioEnabled && autoAdvance) {
+      // Currently playing - pause
+      autoAdvance = false;
+      if (audioPlayer) audioPlayer.pause();
+    } else {
+      // Currently paused - resume
+      audioEnabled = true;
+      autoAdvance = true;
+      if (audioPlayer && audioPlayer.paused) {
+        audioPlayer.play();
+      } else {
+        playCurrentAudio();
+      }
+    }
+    updatePlayerUI();
+  }
+
+  // Button handlers
+  playerPlayPause.addEventListener('click', function(e) {
+    e.stopPropagation();
+    togglePlayPause();
+  });
+
+  playerPrev.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (currentSlide > 0) {
+      jumpToSlide(currentSlide - 1);
+    }
+  });
+
+  playerNext.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (currentSlide < slides.length - 1) {
+      jumpToSlide(currentSlide + 1);
+    }
+  });
+
+  // Replay button
+  var playerReplay = document.getElementById('playerReplay');
+  playerReplay.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (presentationStarted) {
+      replayCurrentSlide();
+    }
+  });
+
+  sectionSelect.addEventListener('change', function(e) {
+    e.stopPropagation();
+    var targetSlide = parseInt(e.target.value);
+    if (!isNaN(targetSlide)) {
+      jumpToSlide(targetSlide);
+    }
+  });
+
+  playerAudioBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleAudio();
+    updatePlayerUI();
+  });
+
+  playerAutoPlayBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleAutoAdvance();
+    updatePlayerUI();
+  });
+
+  // Prevent clicks on player from advancing slides
+  playerControls.addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  // Show player controls when presentation starts
+  var originalStartPresentation = startPresentation;
+
+  // Add section markers after slides are defined
+  setTimeout(addSectionMarkers, 100);
 
   // Load manifest
   fetch('audio/narration-manifest.json')
@@ -7860,67 +8263,87 @@
           console.log('Audio file changed during animation delay, skipping:', currentFile);
           return;
         }
-        console.log('All animations done, fetching audio:', audioFile);
+        console.log('All animations done, loading audio:', audioFile);
         audioStatus.textContent = 'LOADING';
-        fetch(audioFile, { signal: window.audioAbortController.signal })
-        .then(function(response) {
-          if (!response.ok) throw new Error('HTTP ' + response.status);
-          return response.blob();
-        })
-        .then(function(blob) {
-          // Check if this is still the current file we want to play
-          if (window.currentAudioFile !== currentFile) {
-            console.log('Audio file changed, skipping playback of:', currentFile);
-            return Promise.reject(new Error('cancelled'));
-          }
-          console.log('Audio blob loaded:', blob.size, 'bytes');
-          window.currentBlobUrl = URL.createObjectURL(blob);
 
-          // Create fresh Audio element for each playback
-          audioPlayer = new Audio(window.currentBlobUrl);
+        // Check if this is still the current file we want to play
+        if (window.currentAudioFile !== currentFile) {
+          console.log('Audio file changed, skipping playback of:', currentFile);
+          return;
+        }
 
-          // Set up ended event handler
-          audioPlayer.addEventListener('ended', function() {
-            clearTimeout(window.audioSafetyTimer);
-            audioProgressBar.style.width = '0%';
-            console.log('Audio ended, advancing...');
-            if (autoAdvance && audioEnabled) {
-              // Small delay for browser to release audio resources
-              setTimeout(function() {
-                advanceAndPlay();
-              }, 100);
-            }
-          });
+        // Use direct file URL for reliable playback
+        // Stop and dispose previous audio player
+        if (audioPlayer) {
+          audioPlayer.pause();
+          audioPlayer.src = '';
+          audioPlayer = null;
+        }
 
-          // Set up error event handler for debugging
-          audioPlayer.addEventListener('error', function(e) {
-            console.error('Audio player error:', e, audioPlayer.error);
-          });
+        // Create fresh Audio element with direct URL
+        audioPlayer = new Audio();
+        audioPlayer.preload = 'auto';
 
-          // Log when audio actually starts playing
-          audioPlayer.addEventListener('playing', function() {
-            console.log('Audio PLAYING event fired - currentTime:', audioPlayer.currentTime, 'duration:', audioPlayer.duration);
-          });
+        // Debug: track when audio metadata loads
+        audioPlayer.addEventListener('loadedmetadata', function() {
+          console.log('Audio metadata loaded - duration:', audioPlayer.duration);
+        });
 
-          // Set up progress tracking
-          audioPlayer.addEventListener('timeupdate', function() {
-            if (audioPlayer && audioPlayer.duration) {
-              var pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-              audioProgressBar.style.width = pct + '%';
-            }
-          });
+        // Debug: track when audio can play through
+        audioPlayer.addEventListener('canplaythrough', function() {
+          console.log('Audio can play through');
+        });
 
-          // Safety timeout - advance if audio seems stuck (25 seconds max per clip)
-          window.audioSafetyTimer = setTimeout(function() {
-            console.log('Safety timeout triggered, paused:', audioPlayer ? audioPlayer.paused : 'null', 'ended:', audioPlayer ? audioPlayer.ended : 'null');
-            if (audioPlayer && audioPlayer.paused && !audioPlayer.ended && autoAdvance && audioEnabled) {
-              console.log('Safety timeout - forcing advance');
+        // Set up ended event handler
+        audioPlayer.addEventListener('ended', function() {
+          clearTimeout(window.audioSafetyTimer);
+          audioProgressBar.style.width = '0%';
+          console.log('Audio ended, advancing...');
+          if (autoAdvance && audioEnabled) {
+            // Small delay for browser to release audio resources
+            setTimeout(function() {
               advanceAndPlay();
-            }
-          }, 25000);
+            }, 100);
+          }
+        });
 
-          return audioPlayer.play();
-        })
+        // Set up error event handler for debugging
+        audioPlayer.addEventListener('error', function(e) {
+          if (audioPlayer) {
+            console.error('Audio player error:', e, audioPlayer.error);
+          }
+        });
+
+        // Log when audio actually starts playing
+        audioPlayer.addEventListener('playing', function() {
+          console.log('Audio PLAYING event fired - currentTime:', audioPlayer.currentTime, 'duration:', audioPlayer.duration);
+        });
+
+        // Set up progress tracking
+        audioPlayer.addEventListener('timeupdate', function() {
+          if (audioPlayer && audioPlayer.duration) {
+            var pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            audioProgressBar.style.width = pct + '%';
+          }
+        });
+
+        // Safety timeout - advance if audio seems stuck (25 seconds max per clip)
+        window.audioSafetyTimer = setTimeout(function() {
+          console.log('Safety timeout triggered, paused:', audioPlayer ? audioPlayer.paused : 'null', 'ended:', audioPlayer ? audioPlayer.ended : 'null');
+          if (audioPlayer && audioPlayer.paused && !audioPlayer.ended && autoAdvance && audioEnabled) {
+            console.log('Safety timeout - forcing advance');
+            advanceAndPlay();
+          }
+        }, 25000);
+
+        // Set source and explicitly load before playing
+        audioPlayer.src = audioFile;
+        console.log('Audio src set to:', audioFile);
+        audioPlayer.load();
+        console.log('Audio load() called');
+
+        // Play the audio - this returns a Promise
+        audioPlayer.play()
         .then(function() {
           console.log('Audio playing successfully');
           audioStatus.textContent = 'PLAYING';
@@ -8019,12 +8442,15 @@
     audioEnabled = true;
     startOverlay.style.display = 'none';
     audioStatus.textContent = 'PLAYING';
+    // Show player controls
+    playerControls.classList.add('visible');
     // Start from beginning - show ALL content first, then narrate
     currentSlide = 0;
     var s = slides[currentSlide];
     currentStep = s.steps; // Show ALL content immediately (max step)
     currentAudioStep = 1;  // Start audio from step 1
     render();
+    updatePlayerUI();
     playCurrentAudio();
   }
 
@@ -8072,15 +8498,48 @@
     toggleAutoAdvance();
   });
 
-  // Keyboard shortcuts for audio
+  // Keyboard shortcuts for audio and player
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'a' || e.key === 'A') { toggleAudio(); }
-    if (e.key === 'v' || e.key === 'V') { toggleAutoAdvance(); }
-    if (e.key === ' ' && !presentationStarted) {
+    if (e.key === 'a' || e.key === 'A') { toggleAudio(); updatePlayerUI(); }
+    if (e.key === 'v' || e.key === 'V') { toggleAutoAdvance(); updatePlayerUI(); }
+    if (e.key === ' ') {
       e.preventDefault();
-      startPresentation();
+      if (!presentationStarted) {
+        startPresentation();
+      } else {
+        togglePlayPause();
+      }
+    }
+    // R to replay current slide from beginning
+    if (e.key === 'r' || e.key === 'R') {
+      if (presentationStarted) {
+        replayCurrentSlide();
+      }
+    }
+    // Home to go to beginning
+    if (e.key === 'Home') {
+      e.preventDefault();
+      jumpToSlide(0);
+    }
+    // End to go to last slide
+    if (e.key === 'End') {
+      e.preventDefault();
+      jumpToSlide(slides.length - 1);
     }
   });
+
+  // Replay current slide from beginning
+  function replayCurrentSlide() {
+    if (audioPlayer) {
+      audioPlayer.pause();
+    }
+    currentAudioStep = 1;
+    skipAnimationWait = false;
+    if (audioEnabled) {
+      playCurrentAudio();
+    }
+    updatePlayerUI();
+  }
 
   // Override next/prev to NOT auto-play (handled by ended event)
   var originalNext = next;

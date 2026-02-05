@@ -248,17 +248,17 @@
         },
         {
           "step": 2,
-          "text": "Category one... platform decisions. This is when DoorDash or UberEats decides to shut you down. Drivers waiting too long. Too many cancelled orders. Hours mismatch. Nothing is technically broken... the platform just decided you're causing problems. They made a business decision to take you offline.",
+          "text": "Break point one... PBP... Paused by Platform. This is when DoorDash or UberEats decides to shut you down. Drivers waiting too long. Too many cancelled orders. Hours mismatch. Nothing is technically broken... the platform just decided you're causing problems. They made a business decision to take you offline.",
           "audio": "s2-3_step02.mp3"
         },
         {
           "step": 3,
-          "text": "Category two... technology failures. This is when actual tech breaks. Your POS loses connection. OLO crashes. Your tablet dies. WiFi goes down. These are real technical problems that need technical solutions.",
+          "text": "Break point two... RSO... Restaurant System Outage. This is when actual tech breaks. Your POS loses connection. OLO crashes. Your tablet dies. WiFi goes down. These are real technical problems that need technical solutions.",
           "audio": "s2-3_step03.mp3"
         },
         {
           "step": 4,
-          "text": "Category three... human actions. Someone accidentally toggled you offline. Or deliberately... because you're short-staffed and can't keep up. Each category needs a completely different response. You can't fix a WiFi problem the same way you fix an overwhelmed kitchen.",
+          "text": "Break point three... PBR... Paused by Restaurant. Someone accidentally toggled you offline. Or deliberately... because you're short-staffed and can't keep up. Each category needs a completely different response. You can't fix a WiFi problem the same way you fix an overwhelmed kitchen.",
           "audio": "s2-3_step04.mp3"
         }
       ]
