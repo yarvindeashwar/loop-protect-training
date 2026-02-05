@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training Deck Editor</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-panel: #141414;
+      --bg-card: #1a1a1a;
+      --bg-hover: #222;
+      --border: #333;
+      --text: #e0e0e0;
+      --text-dim: #888;
+      --blue: #58C4DD;
+      --green: #83C167;
+      --gold: #F0AC5F;
+      --red: #FC6255;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    header .stats {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    header .stats span {
+      margin-left: 16px;
+    }
+
+    /* Main Layout */
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .sidebar-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-add-slide {
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--green);
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-transform: none;
+    }
+
+    .btn-add-slide:hover {
+      filter: brightness(1.1);
+    }
+
+    .slide-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .slide-item {
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+      transition: background 0.15s;
+    }
+
+    .slide-item:hover {
+      background: var(--bg-hover);
+    }
+
+    .slide-item.active {
+      background: var(--blue);
+      color: #000;
+    }
+
+    .slide-item.active .slide-meta {
+      color: #000;
+      opacity: 0.7;
+    }
+
+    .slide-item.modified::before {
+      content: '•';
+      color: var(--gold);
+      margin-right: 8px;
+      font-size: 18px;
+    }
+
+    .slide-id {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .slide-meta {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Preview Panel */
+    .preview-panel {
+      width: 50%;
+      min-width: 400px;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-panel);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .preview-header h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .preview-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .step-nav {
+      display: flex;
+      gap: 4px;
+    }
+
+    .step-nav button {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      background: var(--bg-hover);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .step-nav button:hover {
+      background: var(--border);
+    }
+
+    .step-indicator {
+      font-size: 12px;
+      color: var(--text-dim);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .preview-container {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      transform-origin: top left;
+    }
+
+    .preview-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--text-dim);
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Main Panel */
+    .main-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 350px;
+    }
+
+    #slideEditor {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .panel-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-panel);
+      flex-shrink: 0;
+    }
+
+    .panel-header h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .panel-header .subtitle {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Steps Container */
+    .steps-container {
+      flex: 1 1 0;
+      overflow-y: auto;
+      padding: 16px;
+      min-height: 0;
+      height: 0;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .step-card.active-step {
+      border-color: var(--blue);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .step-header:hover {
+      background: var(--bg-hover);
+    }
+
+    .step-card.active-step .step-header {
+      background: rgba(88, 196, 221, 0.15);
+    }
+
+    .step-label {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .step-audio-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .audio-status {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .audio-status.exists { color: var(--green); }
+    .audio-status.missing { color: var(--red); }
+
+    .step-body {
+      padding: 14px;
+    }
+
+    .step-current {
+      margin-bottom: 10px;
+    }
+
+    .step-current-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .step-current-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .step-edit {
+      margin-top: 10px;
+    }
+
+    .step-edit-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .step-edit textarea {
+      width: 100%;
+      min-height: 60px;
+      background: var(--bg);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .step-edit textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .step-edit textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* Content Edit Section (per step) */
+    .content-edit-section {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .content-edit-section .step-current-label {
+      color: var(--blue);
+    }
+
+    .content-textarea {
+      width: 100%;
+      min-height: 50px;
+      background: var(--bg);
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      padding: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.5;
+      resize: vertical;
+      margin-top: 6px;
+    }
+
+    .content-textarea:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .content-textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* Overall Section (top of editor) */
+    .overall-section {
+      padding: 16px;
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .overall-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .overall-header {
+      padding: 10px 14px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .overall-label {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--blue);
+    }
+
+    .overall-hint {
+      display: block;
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    .overall-textarea {
+      width: 100%;
+      min-height: 80px;
+      background: var(--bg-card);
+      border: none;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .overall-textarea:focus {
+      outline: none;
+      background: var(--bg);
+    }
+
+    .overall-textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* Section Separator */
+    .section-separator {
+      padding: 12px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+    }
+
+    .section-separator span {
+      background: var(--bg-panel);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* Simplified step textarea */
+    .step-textarea {
+      width: 100%;
+      min-height: 40px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 12px;
+      line-height: 1.4;
+      resize: vertical;
+      margin-top: 8px;
+    }
+
+    .step-textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .step-textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-secondary {
+      background: var(--bg-hover);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .btn-sm {
+      padding: 4px 8px;
+      font-size: 11px;
+    }
+
+    /* Action Bar */
+    .action-bar {
+      padding: 12px 16px;
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .changes-summary {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .changes-summary .count {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Instruction Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.visible {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .instruction-preview {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      color: var(--text);
+    }
+
+    .modal-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--text-dim);
+      text-align: center;
+      padding: 40px;
+    }
+
+    .empty-state h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      max-width: 300px;
+    }
+
+    /* Audio Player */
+    .audio-player {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .play-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 11px;
+    }
+
+    .play-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .play-prev-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 12px;
+      margin-left: 4px;
+      opacity: 0.7;
+    }
+
+    .play-prev-btn:hover {
+      filter: brightness(1.1);
+      opacity: 1;
+    }
+
+    .play-prev-btn::before {
+      content: '';
+    }
+
+    /* Section Headers in Sidebar */
+    .section-header {
+      padding: 6px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      background: var(--bg);
+      margin-top: 8px;
+      border-radius: 4px;
+    }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--text-dim);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: var(--green);
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s;
+      z-index: 1001;
+      pointer-events: none;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Visual Instructions Card */
+    .visual-card {
+      background: linear-gradient(135deg, rgba(88, 196, 221, 0.1), rgba(131, 193, 103, 0.1));
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .visual-header {
+      padding: 12px 14px;
+      background: rgba(88, 196, 221, 0.15);
+      border-bottom: 1px solid var(--blue);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .visual-label {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--blue);
+    }
+
+    .visual-hint {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .visual-body {
+      padding: 14px;
+    }
+
+    .visual-textarea {
+      width: 100%;
+      min-height: 80px;
+      background: var(--bg);
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      padding: 10px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .visual-textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 2px rgba(131, 193, 103, 0.2);
+    }
+
+    .visual-textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* Section Separator */
+    .section-separator {
+      display: flex;
+      align-items: center;
+      margin: 16px 0;
+      color: var(--text-dim);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-separator::before,
+    .section-separator::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section-separator span {
+      padding: 0 12px;
+    }
+
+    /* Edit Mode Toggle */
+    .step-edit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .edit-mode-toggle {
+      display: flex;
+      gap: 4px;
+      background: var(--bg);
+      padding: 3px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .mode-btn {
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-dim);
+      transition: all 0.15s;
+    }
+
+    .mode-btn:hover {
+      color: var(--text);
+    }
+
+    .mode-btn.active {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .mode-btn.active[data-mode="content"] {
+      background: var(--green);
+    }
+
+    .mode-btn.active[data-mode="replace"] {
+      background: var(--blue);
+    }
+
+    .edit-mode-hint {
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    /* Add Slide Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .form-group select,
+    .form-group input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .form-group select:focus,
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .form-group textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+
+    .form-hint {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+
+    .slide-type-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .slide-type-option {
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .slide-type-option input {
+      display: none;
+    }
+
+    .option-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.15s;
+    }
+
+    .slide-type-option input:checked + .option-card {
+      border-color: var(--blue);
+      background: rgba(88, 196, 221, 0.1);
+    }
+
+    .option-card:hover {
+      border-color: var(--text-dim);
+    }
+
+    .option-icon {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .option-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .option-desc {
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+
+    /* New slide indicator in sidebar */
+    .slide-item.new-slide {
+      border: 1px dashed var(--green);
+      background: rgba(131, 193, 103, 0.1);
+    }
+
+    .slide-item.new-slide .slide-id {
+      color: var(--green);
+    }
+
+    .new-badge {
+      font-size: 9px;
+      background: var(--green);
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎬 Training Deck Editor</h1>
+    <div class="stats">
+      <span id="slideCount">Loading...</span>
+      <span id="stepCount"></span>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar: Slide List -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span>Slides</span>
+        <button class="btn-add-slide" id="addSlideBtn" title="Add new slide">+ Add</button>
+      </div>
+      <div class="slide-list" id="slideList">
+        <div class="loading">Loading manifest...</div>
+      </div>
+    </aside>
+
+    <!-- Preview Panel: Shows actual slide -->
+    <div class="preview-panel" id="previewPanel">
+      <div class="preview-header">
+        <h3>📺 Slide Preview</h3>
+        <div class="preview-controls">
+          <div class="step-nav">
+            <button id="prevStepBtn" title="Previous step">◀</button>
+            <span class="step-indicator" id="stepIndicator">-</span>
+            <button id="nextStepBtn" title="Next step">▶</button>
+          </div>
+          <button class="btn btn-sm btn-secondary" id="openInNewTab">↗ Open</button>
+        </div>
+      </div>
+      <div class="preview-container" id="previewContainer">
+        <div class="preview-placeholder" id="previewPlaceholder">
+          <div>
+            <p style="font-size: 16px; margin-bottom: 8px;">Select a slide to preview</p>
+            <p style="font-size: 12px;">The actual slide will appear here</p>
+          </div>
+        </div>
+        <iframe id="previewIframe" class="preview-iframe" style="display: none;"></iframe>
+      </div>
+    </div>
+
+    <!-- Main Panel: Talk Track Editor -->
+    <main class="main-panel">
+      <div class="empty-state" id="emptyState">
+        <h3>Select a Slide</h3>
+        <p>Click on a slide from the sidebar to view and edit its talk track.</p>
+      </div>
+
+      <div id="slideEditor" style="display: none;">
+        <div class="panel-header">
+          <h2 id="slideTitle">Slide 0-1</h2>
+          <div class="subtitle" id="slideSubtitle">2 steps • Audio synced</div>
+        </div>
+
+        <div class="steps-container" id="stepsContainer">
+          <!-- Steps will be rendered here -->
+        </div>
+      </div>
+
+      <div class="action-bar">
+        <div class="changes-summary">
+          <span class="count" id="changesCount">0</span> pending changes
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-secondary btn-sm" onclick="clearChanges()">Clear All</button>
+          <button class="btn btn-primary btn-sm" onclick="saveAndApply()">💾 Save & Apply</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Instruction Modal -->
+  <div class="modal-overlay" id="instructionModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Instructions for Claude Code</h3>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="instruction-preview" id="instructionPreview"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="closeModalBtn">Cancel</button>
+        <button class="btn btn-primary" id="copyInstructionBtn">📋 Copy to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <!-- Add Slide Modal -->
+  <div class="modal-overlay" id="addSlideModal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>➕ Add New Slide</h3>
+        <button class="modal-close" id="closeAddSlide">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Insert After Slide</label>
+          <select id="insertAfterSelect">
+            <option value="start">At the beginning</option>
+          </select>
+          <div class="form-hint">The new slide will be inserted after this slide</div>
+        </div>
+
+        <div class="form-group">
+          <label>Slide Type</label>
+          <div class="slide-type-options">
+            <label class="slide-type-option">
+              <input type="radio" name="slideType" value="content" checked>
+              <span class="option-card">
+                <span class="option-icon">📝</span>
+                <span class="option-label">Content Slide</span>
+                <span class="option-desc">Text, cards, or list items</span>
+              </span>
+            </label>
+            <label class="slide-type-option">
+              <input type="radio" name="slideType" value="chart">
+              <span class="option-card">
+                <span class="option-icon">📊</span>
+                <span class="option-label">Chart/Visual</span>
+                <span class="option-desc">Bar chart, flow diagram, etc.</span>
+              </span>
+            </label>
+            <label class="slide-type-option">
+              <input type="radio" name="slideType" value="title">
+              <span class="option-card">
+                <span class="option-icon">🎯</span>
+                <span class="option-label">Section Title</span>
+                <span class="option-desc">Section header slide</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Slide Description</label>
+          <textarea id="newSlideDescription" placeholder="Describe what this slide should show and say. Be specific about:
+• What visual elements to include (cards, charts, icons)
+• Key points for the talk track
+• How it connects to surrounding slides
+
+Example: Show a comparison of error rates across platforms. Use a bar chart with DoorDash, UberEats, and Grubhub. Highlight that DoorDash has the highest error rate. Talk track should explain why this matters for the restaurant's bottom line."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Number of Steps</label>
+          <input type="number" id="newSlideSteps" value="3" min="1" max="10">
+          <div class="form-hint">How many click-throughs to reveal all content</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelAddSlide">Cancel</button>
+        <button class="btn btn-primary" id="confirmAddSlide">➕ Add to Queue</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let manifest = null;
+    let selectedSlide = null;
+    let currentPreviewStep = 0;
+    let maxSteps = 0;
+    let changes = {}; // { "1-1": { 1: "new text", 2: "another text" } }
+    let visualChanges = {}; // { "1-1": "Add a fourth card for catering..." }
+    let newSlides = []; // Array of new slide definitions
+    let audioPlayer = null;
+    let iframeReady = false;
+
+    // Section names for display
+    const sectionNames = {
+      '0': 'Introduction',
+      '1': 'The Problem',
+      '2': 'Guard',
+      '3': 'Recover',
+      '3b': 'Recover (Alt)',
+      '4': 'SOTU',
+      '5': 'Conclusion'
+    };
+
+    // Slide index mapping (slide ID -> index in presentation)
+    let slideIndexMap = {};
+
+    // Load manifest
+    async function loadManifest() {
+      try {
+        const response = await fetch('audio/narration-manifest.json');
+        manifest = await response.json();
+
+        // Build slide index map
+        manifest.slides.forEach((slide, idx) => {
+          slideIndexMap[slide.id] = idx;
+        });
+
+        renderSlideList();
+        updateStats();
+        initPreview();
+      } catch (err) {
+        document.getElementById('slideList').innerHTML = `
+          <div class="empty-state">
+            <h3>Error Loading Manifest</h3>
+            <p>${err.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    // Initialize preview iframe
+    function initPreview() {
+      const iframe = document.getElementById('previewIframe');
+      iframe.src = 'deck-v2-s1.html?v=' + Date.now();
+
+      iframe.onload = () => {
+        iframeReady = true;
+        try {
+          const win = iframe.contentWindow;
+
+          // Disable audio in preview
+          win.audioEnabled = false;
+          win.autoAdvance = false;
+
+          // Mark presentation as started to skip intro
+          win.presentationStarted = true;
+
+          // Hide the start overlay
+          const startOverlay = win.document.getElementById('startOverlay');
+          if (startOverlay) {
+            startOverlay.style.display = 'none';
+          }
+
+          // If a slide is already selected, navigate to it
+          if (selectedSlide) {
+            setTimeout(() => navigatePreviewToSlide(selectedSlide), 100);
+          }
+        } catch (e) {
+          console.log('Init preview error:', e);
+        }
+      };
+    }
+
+    // Update header stats
+    function updateStats() {
+      const totalSlides = manifest.slides.length;
+      const totalSteps = manifest.slides.reduce((sum, s) => sum + s.steps.length, 0);
+
+      document.getElementById('slideCount').textContent = `${totalSlides} slides`;
+      document.getElementById('stepCount').textContent = `${totalSteps} steps`;
+    }
+
+    // Render slide list in sidebar
+    function renderSlideList() {
+      const container = document.getElementById('slideList');
+      container.innerHTML = '';
+
+      let currentSection = null;
+
+      manifest.slides.forEach(slide => {
+        // Determine section
+        const section = slide.id.includes('b-') ? slide.id.split('b-')[0] + 'b' : slide.id.split('-')[0];
+
+        // Add section header if new section
+        if (section !== currentSection) {
+          currentSection = section;
+          const header = document.createElement('div');
+          header.className = 'section-header';
+          header.textContent = sectionNames[section] || `Section ${section}`;
+          container.appendChild(header);
+        }
+
+        const item = document.createElement('div');
+        item.className = 'slide-item';
+        if (changes[slide.id]) {
+          item.classList.add('modified');
+        }
+        item.dataset.slideId = slide.id;
+
+        item.innerHTML = `
+          <span class="slide-id">${slide.id}</span>
+          <span class="slide-meta">${slide.steps.length} steps</span>
+        `;
+
+        item.addEventListener('click', () => selectSlide(slide.id));
+        container.appendChild(item);
+
+        // Check if there's a new slide to insert after this one
+        const newSlideHere = newSlides.filter(ns => ns.insertAfter === slide.id);
+        newSlideHere.forEach(ns => {
+          const newItem = document.createElement('div');
+          newItem.className = 'slide-item new-slide';
+          newItem.innerHTML = `
+            <span class="slide-id">${ns.tempId}</span>
+            <span class="new-badge">NEW</span>
+          `;
+          newItem.addEventListener('click', () => showNewSlidePreview(ns));
+          container.appendChild(newItem);
+        });
+      });
+
+      // Add new slides at the beginning
+      const startSlides = newSlides.filter(ns => ns.insertAfter === 'start');
+      if (startSlides.length > 0) {
+        const firstSection = container.querySelector('.section-header');
+        startSlides.reverse().forEach(ns => {
+          const newItem = document.createElement('div');
+          newItem.className = 'slide-item new-slide';
+          newItem.innerHTML = `
+            <span class="slide-id">${ns.tempId}</span>
+            <span class="new-badge">NEW</span>
+          `;
+          newItem.addEventListener('click', () => showNewSlidePreview(ns));
+          if (firstSection) {
+            container.insertBefore(newItem, firstSection.nextSibling);
+          }
+        });
+      }
+    }
+
+    // Show preview for a new slide (in the editor panel)
+    function showNewSlidePreview(newSlide) {
+      selectedSlide = null;
+
+      // Update sidebar selection
+      document.querySelectorAll('.slide-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Hide iframe preview
+      document.getElementById('previewPlaceholder').style.display = 'flex';
+      document.getElementById('previewPlaceholder').innerHTML = `
+        <div>
+          <p style="font-size: 16px; margin-bottom: 8px; color: var(--green);">📝 New Slide Preview</p>
+          <p style="font-size: 12px;">This slide will be created by Claude</p>
+        </div>
+      `;
+      document.getElementById('previewIframe').style.display = 'none';
+
+      // Show editor
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('slideEditor').style.display = 'flex';
+      document.getElementById('slideEditor').style.flexDirection = 'column';
+      document.getElementById('slideEditor').style.flex = '1';
+
+      // Render new slide details
+      document.getElementById('slideTitle').textContent = `${newSlide.tempId} (New)`;
+      document.getElementById('slideSubtitle').textContent = `${newSlide.steps} steps • ${newSlide.slideType} slide`;
+
+      const container = document.getElementById('stepsContainer');
+      container.innerHTML = `
+        <div class="visual-card" style="border-color: var(--green);">
+          <div class="visual-header" style="background: rgba(131, 193, 103, 0.15);">
+            <span class="visual-label" style="color: var(--green);">📝 New Slide Description</span>
+            <button class="btn btn-sm btn-secondary" onclick="removeNewSlide('${newSlide.tempId}')">🗑️ Remove</button>
+          </div>
+          <div class="visual-body">
+            <div style="background: var(--bg); padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+              <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">Insert After</div>
+              <div style="font-size: 13px;">${newSlide.insertAfter === 'start' ? 'Beginning of deck' : `Slide ${newSlide.insertAfter}`}</div>
+            </div>
+            <div style="background: var(--bg); padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+              <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">Type</div>
+              <div style="font-size: 13px;">${newSlide.slideType === 'content' ? '📝 Content Slide' : newSlide.slideType === 'chart' ? '📊 Chart/Visual' : '🎯 Section Title'}</div>
+            </div>
+            <div style="background: var(--bg); padding: 12px; border-radius: 6px;">
+              <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 4px;">Description</div>
+              <div style="font-size: 13px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(newSlide.description)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Remove a new slide from the queue
+    function removeNewSlide(tempId) {
+      newSlides = newSlides.filter(ns => ns.tempId !== tempId);
+      updateChangesCount();
+      renderSlideList();
+      // Show empty state
+      document.getElementById('emptyState').style.display = 'flex';
+      document.getElementById('slideEditor').style.display = 'none';
+      showToast('Slide removed from queue');
+    }
+
+    // Make removeNewSlide available globally
+    window.removeNewSlide = removeNewSlide;
+
+    // Select a slide
+    function selectSlide(slideId) {
+      selectedSlide = slideId;
+      currentPreviewStep = 0;
+
+      // Update sidebar selection
+      document.querySelectorAll('.slide-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.slideId === slideId);
+      });
+
+      // Show editor
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('slideEditor').style.display = 'flex';
+      document.getElementById('slideEditor').style.flexDirection = 'column';
+      document.getElementById('slideEditor').style.flex = '1';
+
+      // Show preview
+      document.getElementById('previewPlaceholder').style.display = 'none';
+      document.getElementById('previewIframe').style.display = 'block';
+
+      // Get slide info
+      const slide = manifest.slides.find(s => s.id === selectedSlide);
+      maxSteps = slide ? slide.steps.length : 0;
+
+      // Navigate preview to this slide
+      navigatePreviewToSlide(slideId);
+
+      renderSlideEditor();
+      updateStepIndicator();
+    }
+
+    // Navigate preview iframe to specific slide (fully loaded)
+    function navigatePreviewToSlide(slideId) {
+      if (!iframeReady) return;
+
+      const iframe = document.getElementById('previewIframe');
+      const slideIndex = slideIndexMap[slideId];
+
+      try {
+        const win = iframe.contentWindow;
+        // Get the max steps for this slide
+        const slideObj = win.slides[slideIndex];
+        const maxStep = slideObj ? slideObj.steps : 0;
+
+        // Set the current slide and show FULLY LOADED (all steps complete)
+        win.currentSlide = slideIndex;
+        win.currentStep = maxStep;
+        win.render();
+
+        // Update our local tracking
+        currentPreviewStep = maxStep;
+        updateStepIndicator();
+      } catch (e) {
+        console.log('Could not control iframe:', e);
+      }
+    }
+
+    // Navigate preview to specific step
+    function setPreviewStep(step) {
+      if (!iframeReady || !selectedSlide) return;
+
+      const iframe = document.getElementById('previewIframe');
+
+      try {
+        const win = iframe.contentWindow;
+        win.currentStep = step;
+        win.render();
+
+        // Highlight active step in editor
+        highlightActiveStep(step);
+      } catch (e) {
+        console.log('Could not control iframe:', e);
+      }
+    }
+
+    // Highlight active step card
+    function highlightActiveStep(step) {
+      document.querySelectorAll('.step-card').forEach((card, idx) => {
+        card.classList.toggle('active-step', idx === step);
+      });
+    }
+
+    // Update step indicator
+    function updateStepIndicator() {
+      document.getElementById('stepIndicator').textContent = `${currentPreviewStep}/${maxSteps}`;
+    }
+
+    // Step navigation
+    function prevStep() {
+      if (currentPreviewStep > 0) {
+        currentPreviewStep--;
+        setPreviewStep(currentPreviewStep);
+        updateStepIndicator();
+      }
+    }
+
+    function nextStep() {
+      if (currentPreviewStep < maxSteps) {
+        currentPreviewStep++;
+        setPreviewStep(currentPreviewStep);
+        updateStepIndicator();
+      }
+    }
+
+    // Render slide editor
+    function renderSlideEditor() {
+      const slide = manifest.slides.find(s => s.id === selectedSlide);
+      if (!slide) return;
+
+      // Update header
+      document.getElementById('slideTitle').textContent = `Slide ${slide.id}`;
+      document.getElementById('slideSubtitle').textContent = `${slide.steps.length} steps • Click step to preview`;
+
+      // Render editor
+      const container = document.getElementById('stepsContainer');
+      container.innerHTML = '';
+
+      // Get overall changes for this slide
+      const overallContent = visualChanges[slide.id]?.overall || '';
+      const overallTalkTrack = changes[slide.id]?.overall || '';
+
+      // === OVERALL SLIDE CHANGES (Top Section) ===
+      const overallSection = document.createElement('div');
+      overallSection.className = 'overall-section';
+      overallSection.innerHTML = `
+        <div class="overall-card">
+          <div class="overall-header">
+            <span class="overall-label">✏️ Edit Slide Content</span>
+            <span class="overall-hint">Changes to what appears on screen (titles, text, charts, bullets, etc.)</span>
+          </div>
+          <textarea
+            class="overall-textarea"
+            id="overallContentInput"
+            placeholder="Describe changes for this slide:
+• Change the title to '...'
+• Update the chart to show 45% instead of 38%
+• Add a new bullet point about real-time alerts
+• Remove the section about cancellations"
+            data-slide="${slide.id}"
+            data-type="content"
+            oninput="handleOverallContentChange(this)"
+          >${escapeHtml(overallContent)}</textarea>
+        </div>
+
+        <div class="overall-card" style="margin-top: 12px;">
+          <div class="overall-header">
+            <span class="overall-label">🎙️ Edit Talk Track</span>
+            <span class="overall-hint">Changes to the narration/audio for this slide</span>
+          </div>
+          <textarea
+            class="overall-textarea"
+            id="overallTalkTrackInput"
+            placeholder="Describe changes to the talk track:
+• Make it more conversational
+• Add emphasis on the recovery rate
+• Shorten the explanation of the process
+• Or provide new content to expand into full narration"
+            data-slide="${slide.id}"
+            data-type="talktrack"
+            oninput="handleOverallTalkTrackChange(this)"
+          >${escapeHtml(overallTalkTrack)}</textarea>
+        </div>
+      `;
+
+      container.appendChild(overallSection);
+
+      // === SEPARATOR ===
+      const separator = document.createElement('div');
+      separator.className = 'section-separator';
+      separator.innerHTML = '<span>Per-Step Details (Optional - for fine-grained control)</span>';
+      container.appendChild(separator);
+
+      // === PER-STEP CARDS ===
+      slide.steps.forEach((step, idx) => {
+        const currentText = step.text;
+        const changeData = changes[slide.id]?.[step.step];
+        const editedText = typeof changeData === 'object' ? (changeData?.text || '') : (changeData || '');
+
+        const card = document.createElement('div');
+        card.className = 'step-card';
+        if (idx === currentPreviewStep) {
+          card.classList.add('active-step');
+        }
+
+        card.innerHTML = `
+          <div class="step-header" data-step-idx="${idx}">
+            <span class="step-label">Step ${step.step}</span>
+            <div class="step-audio-info">
+              <div class="audio-player">
+                <button class="play-btn" data-audio="${step.audio}" title="Play current audio">▶</button>
+                <button class="play-prev-btn" data-audio="${step.audio}" title="Play previous audio">◀</button>
+              </div>
+              <span class="audio-status exists">✓ ${step.audio}</span>
+            </div>
+          </div>
+          <div class="step-body">
+            <div class="step-current">
+              <div class="step-current-label">Current Talk Track</div>
+              <div class="step-current-text">${escapeHtml(currentText)}</div>
+            </div>
+            <div class="step-edit">
+              <textarea
+                class="step-textarea"
+                placeholder="Optional: specific changes for this step only..."
+                data-slide="${slide.id}"
+                data-step="${step.step}"
+              >${escapeHtml(editedText)}</textarea>
+            </div>
+          </div>
+        `;
+
+        // Add event listeners
+        const talkTrackTextarea = card.querySelector('.step-textarea');
+        talkTrackTextarea.addEventListener('input', handleTextChange);
+
+        const playBtn = card.querySelector('.play-btn');
+        playBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          playAudio(step.audio);
+        });
+
+        const playPrevBtn = card.querySelector('.play-prev-btn');
+        playPrevBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          playPreviousAudio(step.audio);
+        });
+
+        // Click on step header to preview that step
+        const stepHeader = card.querySelector('.step-header');
+        stepHeader.addEventListener('click', () => {
+          currentPreviewStep = idx + 1; // Steps are 1-indexed in preview
+          setPreviewStep(currentPreviewStep);
+          updateStepIndicator();
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    // Handle overall slide content change (uses data-slide attribute)
+    function handleOverallContentChange(el) {
+      const slideId = el.dataset.slide;
+      const text = el.value.trim();
+      if (!visualChanges[slideId]) visualChanges[slideId] = {};
+      if (text) {
+        visualChanges[slideId].overall = text;
+      } else {
+        delete visualChanges[slideId].overall;
+        if (Object.keys(visualChanges[slideId]).length === 0) delete visualChanges[slideId];
+      }
+      updateChangesCount();
+      renderSlideList();
+    }
+
+    // Handle overall talk track change (uses data-slide attribute)
+    function handleOverallTalkTrackChange(el) {
+      const slideId = el.dataset.slide;
+      const text = el.value.trim();
+      if (!changes[slideId]) changes[slideId] = {};
+      if (text) {
+        changes[slideId].overall = text;
+      } else {
+        delete changes[slideId].overall;
+        if (Object.keys(changes[slideId]).length === 0) delete changes[slideId];
+      }
+      updateChangesCount();
+      renderSlideList();
+    }
+
+    // Handle per-step text changes (simplified)
+    function handleTextChange(e) {
+      const slideId = e.target.dataset.slide;
+      const stepNum = e.target.dataset.step;
+      const newText = e.target.value.trim();
+
+      if (!changes[slideId]) {
+        changes[slideId] = {};
+      }
+
+      if (newText) {
+        changes[slideId][stepNum] = newText;
+      } else {
+        delete changes[slideId][stepNum];
+        if (Object.keys(changes[slideId]).length === 0) {
+          delete changes[slideId];
+        }
+      }
+
+      updateChangesCount();
+      renderSlideList();
+    }
+
+    // Handle content/visual changes (per step)
+    function handleContentChange(e) {
+      const slideId = e.target.dataset.slide;
+      const stepNum = e.target.dataset.step;
+      const newText = e.target.value.trim();
+
+      if (!visualChanges[slideId]) {
+        visualChanges[slideId] = {};
+      }
+
+      if (newText) {
+        visualChanges[slideId][stepNum] = newText;
+      } else {
+        delete visualChanges[slideId][stepNum];
+        // Clean up empty slide objects
+        if (Object.keys(visualChanges[slideId]).length === 0) {
+          delete visualChanges[slideId];
+        }
+      }
+
+      updateChangesCount();
+      renderSlideList();
+    }
+
+    // Update changes count (defined later with newSlides support)
+
+    // Play audio
+    function playAudio(filename) {
+      if (audioPlayer) {
+        audioPlayer.pause();
+      }
+      audioPlayer = new Audio(`audio/files/${filename}`);
+      audioPlayer.play().catch(err => {
+        showToast('Audio file not found');
+      });
+    }
+
+    function playPreviousAudio(filename) {
+      if (audioPlayer) {
+        audioPlayer.pause();
+      }
+      audioPlayer = new Audio(`audio/previous/${filename}`);
+      audioPlayer.play().catch(err => {
+        showToast('No previous audio for this step');
+      });
+    }
+
+    // Generate instruction
+    function generateInstruction() {
+      const talkTrackCount = Object.keys(changes).reduce((sum, id) => sum + Object.keys(changes[id]).length, 0);
+      const visualCount = Object.keys(visualChanges).reduce((sum, id) => sum + Object.keys(visualChanges[id]).length, 0);
+
+      if (talkTrackCount === 0 && visualCount === 0 && newSlides.length === 0) {
+        showToast('No changes to generate');
+        return;
+      }
+
+      let instruction = `Update the training deck with the following changes:\n\n`;
+
+      // New slides first
+      if (newSlides.length > 0) {
+        instruction += `# NEW SLIDES\n`;
+        instruction += `Create the following new slides in deck-v2-s1.html and narration-manifest.json:\n\n`;
+
+        newSlides.forEach((ns, idx) => {
+          instruction += `## New Slide ${idx + 1}\n`;
+          instruction += `**Insert after:** ${ns.insertAfter === 'start' ? 'Beginning of deck (before slide 0-1)' : `Slide ${ns.insertAfter}`}\n`;
+          instruction += `**Type:** ${ns.slideType === 'content' ? 'Content slide (text, cards, lists)' : ns.slideType === 'chart' ? 'Chart/Visual (bar chart, flow diagram)' : 'Section title slide'}\n`;
+          instruction += `**Steps:** ${ns.steps}\n\n`;
+          instruction += `**Description:**\n${ns.description}\n\n`;
+          instruction += `---\n\n`;
+        });
+      }
+
+      // Slide content changes (now per-step)
+      if (visualCount > 0) {
+        instruction += `# SLIDE CONTENT CHANGES\n`;
+        instruction += `Update the slide content in deck-v2-s1.html:\n\n`;
+        for (const slideId in visualChanges) {
+          instruction += `## Slide ${slideId}\n`;
+          for (const stepNum in visualChanges[slideId]) {
+            instruction += `### Step ${stepNum}\n`;
+            instruction += `${visualChanges[slideId][stepNum]}\n\n`;
+          }
+        }
+        instruction += `---\n\n`;
+      }
+
+      // Talk track changes
+      if (talkTrackCount > 0) {
+        instruction += `# TALK TRACK CHANGES\n`;
+        instruction += `Read the surrounding context in narration-manifest.json to maintain narrative flow and voice consistency.\n\n`;
+
+        for (const slideId in changes) {
+          instruction += `## Slide ${slideId}\n`;
+          for (const key in changes[slideId]) {
+            const text = changes[slideId][key];
+            if (key === 'overall') {
+              instruction += `\n**Overall slide talk track changes:**\n${text}\n`;
+            } else {
+              instruction += `\n**Step ${key}:**\n${text}\n`;
+            }
+          }
+          instruction += '\n';
+        }
+
+        instruction += `---\n\nAfter updating the text in narration-manifest.json, regenerate audio for affected steps.\n`;
+      }
+
+      document.getElementById('instructionPreview').textContent = instruction;
+      document.getElementById('instructionModal').classList.add('visible');
+    }
+
+    // Copy instruction to clipboard
+    async function copyInstruction() {
+      const text = document.getElementById('instructionPreview').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard!');
+        closeModal();
+      } catch (err) {
+        showToast('Failed to copy');
+      }
+    }
+
+    // Save instructions to file and notify user
+    async function saveAndApply() {
+      try {
+        const talkTrackCount = Object.keys(changes).reduce((sum, id) => sum + Object.keys(changes[id] || {}).length, 0);
+        const contentCount = Object.keys(visualChanges).reduce((sum, id) => {
+          const val = visualChanges[id];
+          return sum + (typeof val === 'object' ? Object.keys(val).length : 1);
+        }, 0);
+        const newSlideCount = newSlides.length;
+
+        if (talkTrackCount === 0 && contentCount === 0 && newSlideCount === 0) {
+          showToast('No changes to save');
+          return;
+        }
+
+        // Build instruction object
+        const instructionData = {
+          timestamp: new Date().toISOString(),
+          summary: {
+            talkTrackChanges: talkTrackCount,
+            contentChanges: contentCount,
+            newSlides: newSlideCount
+          },
+          newSlides: newSlides,
+          contentChanges: visualChanges,
+          talkTrackChanges: changes
+        };
+
+        // Save as downloadable file
+        const blob = new Blob([JSON.stringify(instructionData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pending-changes.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showToast('Changes saved! Tell Claude: "apply the changes"');
+      } catch (err) {
+        console.error('saveAndApply error:', err);
+        showToast('Error: ' + err.message);
+      }
+    }
+
+    // Clear all changes
+    function clearChanges() {
+      changes = {};
+      visualChanges = {};
+      newSlides = [];
+      updateChangesCount();
+      renderSlideList();
+      if (selectedSlide) {
+        renderSlideEditor();
+      }
+    }
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('instructionModal').classList.remove('visible');
+    }
+
+    // Show toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('visible');
+      setTimeout(() => toast.classList.remove('visible'), 2000);
+    }
+
+    // Escape HTML
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Open presentation in new tab
+    function openInNewTab() {
+      if (selectedSlide) {
+        const slideIndex = slideIndexMap[selectedSlide];
+        window.open(`deck-v2-s1.html#slide=${slideIndex}`, '_blank');
+      } else {
+        window.open('deck-v2-s1.html', '_blank');
+      }
+    }
+
+    // Show add slide modal
+    function showAddSlideModal() {
+      // Populate the "insert after" dropdown
+      const select = document.getElementById('insertAfterSelect');
+      select.innerHTML = '<option value="start">At the beginning</option>';
+
+      manifest.slides.forEach(slide => {
+        const option = document.createElement('option');
+        option.value = slide.id;
+        option.textContent = `After slide ${slide.id}`;
+        if (slide.id === selectedSlide) {
+          option.selected = true;
+        }
+        select.appendChild(option);
+      });
+
+      document.getElementById('addSlideModal').classList.add('visible');
+    }
+
+    // Hide add slide modal
+    function hideAddSlideModal() {
+      document.getElementById('addSlideModal').classList.remove('visible');
+      // Reset form
+      document.getElementById('newSlideDescription').value = '';
+      document.getElementById('newSlideSteps').value = '3';
+    }
+
+    // Add new slide to queue
+    function addNewSlide() {
+      const insertAfter = document.getElementById('insertAfterSelect').value;
+      const slideType = document.querySelector('input[name="slideType"]:checked').value;
+      const description = document.getElementById('newSlideDescription').value.trim();
+      const steps = parseInt(document.getElementById('newSlideSteps').value) || 3;
+
+      if (!description) {
+        showToast('Please describe the slide');
+        return;
+      }
+
+      // Generate a temporary ID
+      const tempId = `NEW-${newSlides.length + 1}`;
+
+      newSlides.push({
+        tempId,
+        insertAfter,
+        slideType,
+        description,
+        steps
+      });
+
+      hideAddSlideModal();
+      updateChangesCount();
+      renderSlideList();
+      showToast('Slide added to queue');
+    }
+
+    // Update changes count to include new slides
+    function updateChangesCount() {
+      let count = 0;
+      // Count talk track changes
+      for (const slideId in changes) {
+        count += Object.keys(changes[slideId]).length;
+      }
+      // Count content/visual changes (now nested by step)
+      for (const slideId in visualChanges) {
+        count += Object.keys(visualChanges[slideId]).length;
+      }
+      // Count new slides
+      count += newSlides.length;
+
+      document.getElementById('changesCount').textContent = count;
+    }
+
+    // Update renderSlideList to show new slides
+    const originalRenderSlideList = renderSlideList;
+
+    // Event listeners (saveAndApply and clearChanges use onclick in HTML)
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('copyInstructionBtn').addEventListener('click', copyInstruction);
+    document.getElementById('instructionModal').addEventListener('click', (e) => {
+      if (e.target.id === 'instructionModal') closeModal();
+    });
+    document.getElementById('prevStepBtn').addEventListener('click', prevStep);
+    document.getElementById('nextStepBtn').addEventListener('click', nextStep);
+    document.getElementById('openInNewTab').addEventListener('click', openInNewTab);
+
+    // Add slide modal events
+    document.getElementById('addSlideBtn').addEventListener('click', showAddSlideModal);
+    document.getElementById('closeAddSlide').addEventListener('click', hideAddSlideModal);
+    document.getElementById('cancelAddSlide').addEventListener('click', hideAddSlideModal);
+    document.getElementById('confirmAddSlide').addEventListener('click', addNewSlide);
+    document.getElementById('addSlideModal').addEventListener('click', (e) => {
+      if (e.target.id === 'addSlideModal') hideAddSlideModal();
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') prevStep();
+      if (e.key === 'ArrowRight') nextStep();
+    });
+
+    // Initialize
+    loadManifest();
+  </script>
+</body>
+</html>
